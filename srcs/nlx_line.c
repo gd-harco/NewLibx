@@ -39,8 +39,8 @@ void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
 {
 	if (to_draw->delta_y > 0)
 		nlx_draw_downward(img, to_draw, color);
-	// else
-		// nlx_draw_upward(img, to_draw, color);
+	else
+		nlx_draw_upward(img, to_draw, color);
 }
 
 void	nlx_draw_downward(t_img *img, t_nlx_line *to_draw, int color)
@@ -64,5 +64,29 @@ void	nlx_draw_downward(t_img *img, t_nlx_line *to_draw, int color)
 			y++;
 		}
 	x++;
+	}
+}
+
+void	nlx_draw_upward(t_img *img, t_nlx_line *to_draw, int color)
+{
+	int		x;
+	int		y;
+
+	x = to_draw->start.x;
+	y = to_draw->start.y;
+	to_draw->d = 2 * to_draw->delta_y - to_draw->delta_x;
+	while (x < to_draw->end.x)
+	{
+		if ((x >= 0 && y >= 0)
+			&& (x < img->height && y < img->width))
+			nlx_pixel_put(img, x, y, COLOR_BLUE);
+		if (to_draw->d < 0)
+		{
+			to_draw->d += 2 * to_draw->delta_y;
+			y--;
+		}
+		else
+			to_draw->d += 2 * (to_draw->delta_y - to_draw->delta_x);
+		x++;
 	}
 }
