@@ -16,14 +16,37 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-bool	is_pixel_in_img(int x, int y, int height, int width)
+bool		is_pixel_in_img(int x, int y, int height, int width);
+t_nlx_line	create_straight_line(t_vec3D p1, t_vec3D p2);
+void		nlx_draw_straight_line(t_img *img, t_nlx_line *to_draw, int color);
+
+void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
 {
-	if (x >= 0 && x < width)
+	int		x;
+	int		y;
+	float	m;
+	float	e;
+
+	if (to_draw->delta_x == 0)
 	{
-		if (y >= 0 && y < height)
-			return (true);
+		return (nlx_draw_straight_line(img, to_draw, color));
 	}
-	return (false);
+	m = to_draw->delta_y / to_draw->delta_x;
+	x = to_draw->start.x;
+	y = to_draw->start.y;
+	e = 0;
+	while (x <= to_draw->end.x)
+	{
+		if (is_pixel_in_img(x, y, img->height, img->width))
+			nlx_pixel_put(img, x, y, color);
+		e -= m;
+		x += to_draw->var_x;
+		if (e < -0.5)
+		{
+			y += to_draw->var_y;
+			e += 1.0;
+		}
+	}
 }
 
 t_nlx_line	create_line(t_vec3D p1, t_vec3D p2)
@@ -75,27 +98,25 @@ t_nlx_line	create_straight_line(t_vec3D p1, t_vec3D p2)
 	return (straight);
 }
 
-void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
+void	nlx_draw_straight_line(t_img *img, t_nlx_line *to_draw, int color)
 {
-	int		x;
 	int		y;
-	float	m;
-	float	e;
 
-	m = to_draw->delta_y / to_draw->delta_x;
-	x = to_draw->start.x;
 	y = to_draw->start.y;
-	e = 0;
-	while (x <= to_draw->end.x)
+	while (y <= to_draw->end.y)
 	{
-		if (is_pixel_in_img(x, y, img->height, img->width))
-			nlx_pixel_put(img, x, y, color);
-		e -= m;
-		x++;
-		if (e < -0.5)
-		{
-			y += to_draw->var_y;
-			e += 1.0;
-		}
+		if (is_pixel_in_img(to_draw->start.x, y, img->height, img->width))
+			nlx_pixel_put(img, to_draw->start.x, y, color);
+		y++;
 	}
+}
+
+bool	is_pixel_in_img(int x, int y, int height, int width)
+{
+	if (x >= 0 && x < width)
+	{
+		if (y >= 0 && y < height)
+			return (true);
+	}
+	return (false);
 }

@@ -29,11 +29,7 @@ typedef struct s_nlx_line
 
 //-----------------FUNCTIONS-----------------//
 
-t_nlx_line	create_straight_line(t_vec3D p1, t_vec3D p2);
 t_nlx_line	create_line(t_vec3D p1, t_vec3D p2);
 void		nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color);
-void		nlx_draw_downward(t_img *img, t_nlx_line *to_draw, int color);
-void		nlx_draw_upward(t_img *img, t_nlx_line *to_draw, int color);
-void		nlx_draw_upward(t_img *img, t_nlx_line *to_draw, int color);
 
 #endif

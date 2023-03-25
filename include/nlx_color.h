@@ -1,7 +1,7 @@
 #ifndef NLX_COLOR_H
 # define NLX_COLOR_H
 
-enum
+enum e_color
 {
 	COLOR_WHITE = 0x00FFFFFF,
 	COLOR_BLUE = 0x000000FF,
