@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   nlx_line.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-harco <gd-harco@student.42lyon.f>       +#+  +:+       +#+        */
+/*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:18:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/23 18:25:16 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/03/26 16:25:07 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ t_nlx_line	create_straight_line(t_vec3D p1, t_vec3D p2)
 		straight.start = p2;
 		straight.end = p1;
 	}
-
 	straight.delta_x = 0;
 	straight.delta_y = abs(straight.end.y - straight.start.y);
 	straight.var_y = 1;
