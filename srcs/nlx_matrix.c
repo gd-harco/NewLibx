@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nlx_color.h                                        :+:      :+:    :+:   */
+/*   nlx_matrix.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 16:14:59 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/26 16:15:05 by gd-harco         ###   ########lyon.fr   */
+/*   Created: 2023/03/26 16:17:30 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/03/26 16:20:50 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NLX_COLOR_H
-# define NLX_COLOR_H
+#include "nlx_matrix.h"
 
-enum e_color
+void	init_matrix(t_matrix *matrix)
 {
-	COLOR_WHITE = 0x00FFFFFF,
-	COLOR_BLUE = 0x000000FF,
-	COLOR_SEA_BLUE = 0x00003D60,
-	COLOR_SAND = 0x00C2B280,
-	COLOR_LIGHT_GRASS = 0x00326500,
-	COLOR_MID_GRASS = 0x00254C00,
-	COLOR_DARK_GRASS = 0x00193200,
-	COLOR_ROCK = 0x005A4D41,
-	COLOR_SNOW_WHITE = 0x00FFFAFA,
-};
+	ft_bzero(matrix, sizeof(t_matrix));
+}
 
-#endif
+
