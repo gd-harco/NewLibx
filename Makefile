@@ -20,10 +20,17 @@ MLX_A			=	${MLX_PATH}libmlx.a
 
 # ---- Files ---- #
 
-HEADERS_LIST	=	nlx_img.h nlx_line.h nlx_vec.h \
-					nlx_color.h nlx_matrix.h
+HEADERS_LIST	=	nlx_color.h		\
+					nlx_img.h		\
+					nlx_line.h		\
+					nlx_matrix.h	\
+					nlx_vec.h		\
+					nlx_win.h
 
-SRCS_LIST		=	nlx_img.c nlx_line.c nlx_matrix.c
+SRCS_LIST		=	nlx_img.c		\
+					nlx_line.c		\
+					nlx_matrix.c	\
+					nlx_win.c
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 
