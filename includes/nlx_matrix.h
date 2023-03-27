@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:15:08 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/26 19:52:32 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/03/27 14:48:34 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ typedef struct s_proj_m
 
 void		create_identity_matrix(t_matrix *m);
 t_matrix	get_projection_matrix(t_proj_m *data);
+t_vec3D		*multiply_matrix_vector(t_matrix m, t_vec3D *v);
 
 #endif
