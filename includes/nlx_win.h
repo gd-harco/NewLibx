@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:41:25 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/27 14:15:47 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/03/27 16:23:44 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 typedef struct s_win
 {
 	void	*mlx;
-	void	*win;
+	void	*win_ptr;
 }	t_win;
 
 void	nlx_win_init(t_win *win, int width, int height, char *title);
