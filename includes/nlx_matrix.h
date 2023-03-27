@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:15:08 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/27 14:48:34 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/03/27 17:08:01 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define NLX_MATRIX_H
 
 # include "nlx_vec.h"
+
+//-----------------STRUCTURES-----------------//
 
 typedef struct s_matrix
 {
@@ -28,6 +30,8 @@ typedef struct s_proj_m
 	double		fov;
 	double		aspect_ratio;
 }	t_proj_m;
+
+//-----------------FUNCTIONS-----------------//
 
 void		create_identity_matrix(t_matrix *m);
 t_matrix	get_projection_matrix(t_proj_m *data);
