@@ -10,7 +10,7 @@ DIR_OBJS		=	bin/
 
 DIR_SRCS		=	srcs/
 
-DIR_HEADERS		=	include/
+DIR_HEADERS		=	includes/
 
 # ---- Libs variables ---- #
 
