@@ -6,16 +6,13 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:41:25 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/28 13:11:57 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/03/28 15:00:01 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef NLX_WIN_H
 # define NLX_WIN_H
-
 # include <mlx.h>
-
-//-----------------STRUCTURES-----------------//
 
 //-----------------STRUCTURES-----------------//
 
