@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:18:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/26 16:25:07 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/03/28 13:04:14 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ t_nlx_line	create_line(t_vec3D p1, t_vec3D p2)
 	}
 	else
 		return (create_straight_line(p1, p2));
-	new_line.delta_x = abs(new_line.end.x - new_line.start.x);
-	new_line.delta_y = abs(new_line.end.y - new_line.start.y);
+	new_line.delta_x = fabs(new_line.end.x - new_line.start.x);
+	new_line.delta_y = fabs(new_line.end.y - new_line.start.y);
 	new_line.var_y = 0;
 	if (new_line.end.y < new_line.start.y)
 		new_line.var_y = -1;
@@ -91,7 +91,7 @@ t_nlx_line	create_straight_line(t_vec3D p1, t_vec3D p2)
 		straight.end = p1;
 	}
 	straight.delta_x = 0;
-	straight.delta_y = abs(straight.end.y - straight.start.y);
+	straight.delta_y = fabs(straight.end.y - straight.start.y);
 	straight.var_y = 1;
 	straight.var_x = 0;
 	return (straight);

@@ -6,12 +6,14 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:14:59 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/26 16:15:05 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/03/28 13:06:38 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef NLX_COLOR_H
 # define NLX_COLOR_H
+
+//-----------------STRUCTURES-----------------//
 
 enum e_color
 {

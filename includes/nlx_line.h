@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:16:50 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/26 16:07:18 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/03/28 13:04:02 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define NLX_LINE_H
 # include "nlx_img.h"
 # include "nlx_vec.h"
+# include <math.h>
 
 //-----------------STRUCTURES-----------------//
 
@@ -21,8 +22,8 @@ typedef struct s_nlx_line
 {
 	t_vec3D	start;
 	t_vec3D	end;
-	float	delta_x;
-	float	delta_y;
+	int		delta_x;
+	int		delta_y;
 	int		var_y;
 	int		var_x;
 }				t_nlx_line;
