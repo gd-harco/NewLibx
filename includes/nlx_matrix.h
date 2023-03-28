@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:15:08 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/28 13:06:08 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/03/28 13:08:23 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_proj_m
 	double		fov;
 	double		aspect_ratio;
 }	t_proj_m;
+
+//-----------------FUNCTIONS-----------------//
 
 //-----------------FUNCTIONS-----------------//
 
