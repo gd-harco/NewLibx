@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:03:31 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/28 18:03:36 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/03/29 10:57:52 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 
 //-----------------STRUCTURES-----------------//
 
-typedef struct s_vec3D
+typedef struct s_vec3d
 {
 	double	x;
 	double	y;
 	double	z;
-}				t_vec3D;
+}				t_vec3d;
 
 #endif

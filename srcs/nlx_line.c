@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:18:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/28 13:04:14 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/03/29 10:58:28 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stdbool.h>
 
 bool		is_pixel_in_img(int x, int y, int height, int width);
-t_nlx_line	create_straight_line(t_vec3D p1, t_vec3D p2);
+t_nlx_line	create_straight_line(t_vec3d p1, t_vec3d p2);
 void		nlx_draw_straight_line(t_img *img, t_nlx_line *to_draw, int color);
 
 void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
@@ -49,7 +49,7 @@ void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
 	}
 }
 
-t_nlx_line	create_line(t_vec3D p1, t_vec3D p2)
+t_nlx_line	create_line(t_vec3d p1, t_vec3d p2)
 {
 	t_nlx_line	new_line;
 
@@ -76,7 +76,7 @@ t_nlx_line	create_line(t_vec3D p1, t_vec3D p2)
 	return (new_line);
 }
 
-t_nlx_line	create_straight_line(t_vec3D p1, t_vec3D p2)
+t_nlx_line	create_straight_line(t_vec3d p1, t_vec3d p2)
 {
 	t_nlx_line	straight;
 

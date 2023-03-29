@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:17:30 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/27 14:48:29 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/03/29 10:58:58 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ t_matrix	get_projection_matrix(t_proj_m *data)
 	return (proj_matrix);
 }
 
-t_vec3D	*multiply_matrix_vector(t_matrix m, t_vec3D *v)
+t_vec3d	*multiply_matrix_vector(t_matrix m, t_vec3d *v)
 {
-	t_vec3D	*new_v;
+	t_vec3d	*new_v;
 	float	w;
 
-	new_v = malloc(sizeof(t_vec3D));
+	new_v = malloc(sizeof(t_vec3d));
 	new_v->x = v->x * m.m[0][0] + v->y * m.m[1][0]
 		+ v->z * m.m[2][0] + m.m[3][0];
 	new_v->y = v->x * m.m[0][1] + v->y * m.m[1][1]
