@@ -6,16 +6,18 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 11:48:30 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/03 17:45:35 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/03 18:19:24 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @brief Header file for the image management
  * @file nlx_img.h
+ *
+ * @brief Header file for the image management module of the nlx library
+ *
  * @ingroup image
- * @date 2023/03/23
  * @author gd-harco
+ * @date 2023/03/23
  */
 
 #ifndef NLX_IMG_H
@@ -27,7 +29,13 @@
 /**
  * @struct s_img
  * @brief Structure to store an image and its properties
- * @ingroup image
+ * @param img The image pointer. Automaticly generated
+ * @param addr The address of the image. Automaticly generated
+ * @param bits_per_pixel The number of bits per pixel. Automaticly generated
+ * @param line_length The length of a line in the image. Automaticly generated
+ * @param endian The endian of the image. Automaticly generated
+ * @param width The width of the image, in pixels. Must be specified
+ * @param height The height of the image, in pixels. Must be specified
  */
 typedef struct s_img
 {

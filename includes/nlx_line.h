@@ -6,9 +6,20 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:16:50 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/03 17:36:19 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/03 18:19:10 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
+/**
+ * @file nlx_line.h
+ *
+ * @brief Header file for the line module of the nlx library
+ *
+ * @ingroup line
+ * @ingroup draw
+ * @author gd-harco
+ * @date 2023/03/23
+ */
 
 #ifndef NLX_LINE_H
 # define NLX_LINE_H
@@ -19,7 +30,7 @@
 //-----------------STRUCTURES-----------------//
 
 /**
- * @struct s_nlx_line nlx_line.h 
+ * @struct s_nlx_line nlx_line.h
  * @brief Structure to store a line and its properties
  * @ingroup line
  * @ingroup draw
