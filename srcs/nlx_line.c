@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:18:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/29 10:58:28 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/03 17:00:01 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ bool		is_pixel_in_img(int x, int y, int height, int width);
 t_nlx_line	create_straight_line(t_vec3d p1, t_vec3d p2);
 void		nlx_draw_straight_line(t_img *img, t_nlx_line *to_draw, int color);
 
+/**
+ * @brief draw a line on the image
+ *
+ * @param img image to draw on, as a t_img structure
+ * @param to_draw line to draw on the image, as a t_nlx_line structure
+ * @param color color of the line to draw (in hexa)
+ */
 void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
 {
 	int		x;

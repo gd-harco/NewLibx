@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 16:17:30 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/29 10:58:58 by gd-harco         ###   ########lyon.fr   */
+/*   Created: 2023/04/03 16:01:04 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/04/03 16:54:12 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "nlx_matrix.h"
+#include <math.h>
 
 void	create_identity_matrix(t_matrix *m)
 {
@@ -47,7 +48,7 @@ t_matrix	get_projection_matrix(t_proj_m *data)
 	return (proj_matrix);
 }
 
-t_vec3d	*multiply_matrix_vector(t_matrix m, t_vec3d *v)
+t_vec3d	multiply_matrix_vector(t_matrix m, t_vec3d *v)
 {
 	t_vec3d	*new_v;
 	float	w;
@@ -67,5 +68,5 @@ t_vec3d	*multiply_matrix_vector(t_matrix m, t_vec3d *v)
 		new_v->y /= w;
 		new_v->z /= w;
 	}
-	return (new_v);
+	return (*new_v);
 }

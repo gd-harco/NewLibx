@@ -6,15 +6,28 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:14:59 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/28 13:06:38 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/03 17:38:02 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
+/**
+ * @file nlx_color.h
+ *
+ * @brief header file for the color management
+ *
+ * @author gd-harco
+ * @date 2023/03/26
+ */
 
 #ifndef NLX_COLOR_H
 # define NLX_COLOR_H
 
 //-----------------STRUCTURES-----------------//
 
+/**
+ * @enum e_color
+ *
+ */
 enum e_color
 {
 	COLOR_WHITE = 0x00FFFFFF,
