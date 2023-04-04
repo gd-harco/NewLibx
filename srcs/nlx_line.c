@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:18:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/04 15:17:37 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/04 15:33:15 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-bool		is_pixel_in_img(int x, int y, int height, int width);
-t_nlx_line	*create_straight_line(t_vec3d *p1, t_vec3d *p2);
-void		nlx_draw_straight_line(t_img *img, t_nlx_line *to_draw, int color);
+static bool			is_pixel_in_img(int x, int y, int height, int width);
+static t_nlx_line	*create_straight_line(t_vec3d *p1, t_vec3d *p2);
+static void			nlx_draw_straight_line(t_img *img,
+						t_nlx_line *to_draw, int color);
 
 /**
  * @brief draw a line on the image
@@ -76,7 +77,7 @@ void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
  * @see nlx_color.h
  * @return nothing
  */
-void	nlx_draw_straight_line(t_img *img, t_nlx_line *to_draw, int color)
+static void	nlx_draw_straight_line(t_img *img, t_nlx_line *to_draw, int color)
 {
 	int		y;
 
@@ -136,7 +137,7 @@ t_nlx_line	*create_line(t_vec3d *p1, t_vec3d *p2)
  * @param p2 second point of the line
  * @return t_nlx_line the line object created
  */
-t_nlx_line	*create_straight_line(t_vec3d *p1, t_vec3d *p2)
+static t_nlx_line	*create_straight_line(t_vec3d *p1, t_vec3d *p2)
 {
 	t_nlx_line	*straight;
 
@@ -168,7 +169,7 @@ t_nlx_line	*create_straight_line(t_vec3d *p1, t_vec3d *p2)
  * @param width width of the image
  * @return true if the pixel is in the image, false otherwise
  */
-bool	is_pixel_in_img(int x, int y, int height, int width)
+static bool	is_pixel_in_img(int x, int y, int height, int width)
 {
 	if (x >= 0 && x < width)
 	{
