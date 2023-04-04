@@ -6,10 +6,19 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:15:08 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/29 10:57:17 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/04 12:42:42 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file nlx_matrix.h
+ *
+ * @brief Header file for the matrix module of the nlx library
+ *
+ * @ingroup matrix
+ * @author gd-harco
+ * @date 2023/03/26
+ */
 #ifndef NLX_MATRIX_H
 # define NLX_MATRIX_H
 
@@ -18,12 +27,32 @@
 
 //-----------------STRUCTURES-----------------//
 
+/**
+
+ *
+ * @brief A 4x4 matrix of double to use for 3D normalisation
+ *
+ * @ingroup matrix
+ */
 typedef struct s_matrix
 {
 	double	m[4][4];
 }				t_matrix;
 
 typedef struct s_proj_info
+/**
+ * @struct s_proj_m
+ * @brief Structure containing the data needed
+ * to create a projection matrix, and the matrix itself
+ * @ingroup matrix
+ * @param m The projection matrix created with the data
+ * @param z_near The near clipping plane. Must be provided
+ * @param z_far The far clipping plane. Must be provided
+ * @param fov The field of view. Must be provided
+ * @param aspect_ratio The aspect ratio of the screen.
+ * Determined by the function that creates the matrix
+ */
+typedef struct s_proj_m
 {
 	t_matrix	m;
 	double		z_near;
@@ -36,6 +65,6 @@ typedef struct s_proj_info
 
 void		create_identity_matrix(t_matrix *m);
 t_matrix	get_projection_matrix(t_proj_info *data);
-t_vec3d		*multiply_matrix_vector(t_matrix m, t_vec3d *v);
+t_vec3d		multiply_vector_matrix(t_matrix m, t_vec3d *v);
 
 #endif

@@ -5,13 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 16:17:30 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/03/29 10:58:58 by gd-harco         ###   ########lyon.fr   */
+/*   Created: 2023/04/03 16:01:04 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/04/03 22:08:51 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file nlx_matrix.c
+ *
+ * @brief file containing every function related to matrices in nlx
+ *
+ * @author gd-harco
+ * @date 2023-04-03
+ */
 #include "nlx_matrix.h"
+#include <math.h>
 
+/**
+ * @brief Create a identity matrix object
+ * @details this function transform the 4x4 identity matrix
+ * passed in parameter into an identity matrix
+ * @param m matrix to transform into an identity matrix. Must has been allocated
+ */
 void	create_identity_matrix(t_matrix *m)
 {
 	int	i;
@@ -33,6 +48,14 @@ void	create_identity_matrix(t_matrix *m)
 	}
 }
 
+/**
+ * @brief Get the projection matrix object
+ * @details this function returns a projection matrix
+ * based on the information about the projection passed in parameter
+ * @param data structure containing the data needed to create the matrix
+ * @return t_matrix the projection matrix allocated on the stack
+ * @todo check with vfries if better to allocate on the heap
+ */
 t_matrix	get_projection_matrix(t_proj_m *data)
 {
 	t_matrix	proj_matrix;
@@ -47,11 +70,21 @@ t_matrix	get_projection_matrix(t_proj_m *data)
 	return (proj_matrix);
 }
 
-t_vec3d	*multiply_matrix_vector(t_matrix m, t_vec3d *v)
+/**
+ * @brief Multiply a matrix by a vector
+ * @details this function multiplies a matrix by a vector,
+ * returning a vector that can be used to draw a point on the screen
+ * @param m matrix to multiply
+ * @param v vector to multiply
+ * @return t_vec3d the vector resulting of the multiplication,
+ * allocated on the heap
+ */
+t_vec3d	multiply_vector_matrix(t_matrix m, t_vec3d *v)
 {
 	t_vec3d	*new_v;
 	float	w;
 
+	//TODO secure malloc
 	new_v = malloc(sizeof(t_vec3d));
 	new_v->x = v->x * m.m[0][0] + v->y * m.m[1][0]
 		+ v->z * m.m[2][0] + m.m[3][0];
@@ -67,5 +100,5 @@ t_vec3d	*multiply_matrix_vector(t_matrix m, t_vec3d *v)
 		new_v->y /= w;
 		new_v->z /= w;
 	}
-	return (new_v);
+	return (*new_v);
 }
