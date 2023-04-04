@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:15:08 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/04 12:42:42 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/04 12:43:32 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_matrix
 	double	m[4][4];
 }				t_matrix;
 
-typedef struct s_proj_info
+
 /**
  * @struct s_proj_m
  * @brief Structure containing the data needed
@@ -52,7 +52,7 @@ typedef struct s_proj_info
  * @param aspect_ratio The aspect ratio of the screen.
  * Determined by the function that creates the matrix
  */
-typedef struct s_proj_m
+typedef struct s_proj_info
 {
 	t_matrix	m;
 	double		z_near;
