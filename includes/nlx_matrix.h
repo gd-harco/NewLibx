@@ -23,19 +23,19 @@ typedef struct s_matrix
 	double	m[4][4];
 }				t_matrix;
 
-typedef struct s_proj_m
+typedef struct s_proj_info
 {
 	t_matrix	m;
 	double		z_near;
 	double		z_far;
 	double		fov;
 	double		aspect_ratio;
-}	t_proj_m;
+}	t_proj_info;
 
 //-----------------FUNCTIONS-----------------//
 
 void		create_identity_matrix(t_matrix *m);
-t_matrix	get_projection_matrix(t_proj_m *data);
+t_matrix	get_projection_matrix(t_proj_info *data);
 t_vec3d		*multiply_matrix_vector(t_matrix m, t_vec3d *v);
 
 #endif
