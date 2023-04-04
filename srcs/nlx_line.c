@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:18:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/03 21:58:21 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/04 15:17:37 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 #include <stdbool.h>
 
 bool		is_pixel_in_img(int x, int y, int height, int width);
-t_nlx_line	create_straight_line(t_vec3d p1, t_vec3d p2);
+t_nlx_line	*create_straight_line(t_vec3d *p1, t_vec3d *p2);
 void		nlx_draw_straight_line(t_img *img, t_nlx_line *to_draw, int color);
 
 /**
@@ -51,10 +51,10 @@ void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
 		return (nlx_draw_straight_line(img, to_draw, color));
 	}
 	m = to_draw->delta_y / to_draw->delta_x;
-	x = to_draw->start.x;
-	y = to_draw->start.y;
+	x = to_draw->start->x;
+	y = to_draw->start->y;
 	e = 0;
-	while (x <= to_draw->end.x)
+	while (x <= to_draw->end->x)
 	{
 		if (is_pixel_in_img(x, y, img->height, img->width))
 			nlx_pixel_put(img, x, y, color);
@@ -80,11 +80,11 @@ void	nlx_draw_straight_line(t_img *img, t_nlx_line *to_draw, int color)
 {
 	int		y;
 
-	y = to_draw->start.y;
-	while (y <= to_draw->end.y)
+	y = to_draw->start->y;
+	while (y <= to_draw->end->y)
 	{
-		if (is_pixel_in_img(to_draw->start.x, y, img->height, img->width))
-			nlx_pixel_put(img, to_draw->start.x, y, color);
+		if (is_pixel_in_img(to_draw->start->x, y, img->height, img->width))
+			nlx_pixel_put(img, to_draw->start->x, y, color);
 		y++;
 	}
 }
@@ -96,32 +96,35 @@ void	nlx_draw_straight_line(t_img *img, t_nlx_line *to_draw, int color)
  * if the line is a straight line, the function will call create_straight_line
  * @param p1 first point of the line
  * @param p2 second point of the line
- * @return t_nlx_line the line object created
+ * @return t_nlx_line the line object created,
+ * allocated on the heap (must be freed)
  */
-t_nlx_line	create_line(t_vec3d p1, t_vec3d p2)
+t_nlx_line	*create_line(t_vec3d *p1, t_vec3d *p2)
 {
-	t_nlx_line	new_line;
+	t_nlx_line	*new_line;
 
-	if (p1.x < p2.x)
+	new_line = malloc(sizeof(t_nlx_line));
+	if (!new_line)
+		return (NULL);
+	if (p1->x < p2->x)
 	{
-		new_line.start = p1;
-		new_line.end = p2;
+		new_line->start = p1;
+		new_line->end = p2;
 	}
-	else if (p1.x > p2.x)
+	else if (p1->x > p2->x)
 	{
-		new_line.start = p2;
-		new_line.end = p1;
+		new_line->start = p2;
+		new_line->end = p1;
 	}
 	else
 		return (create_straight_line(p1, p2));
-	new_line.delta_x = fabs(new_line.end.x - new_line.start.x);
-	new_line.delta_y = fabs(new_line.end.y - new_line.start.y);
-	new_line.var_y = 0;
-	if (new_line.end.y < new_line.start.y)
-		new_line.var_y = -1;
-	else if (new_line.end.y > new_line.start.y)
-		new_line.var_y = 1;
-	new_line.var_x = 1;
+	new_line->delta_x = fabs(new_line->end->x - new_line->start->x);
+	new_line->delta_y = fabs(new_line->end->y - new_line->start->y);
+	if (new_line->end->y < new_line->start->y)
+		new_line->var_y = -1;
+	else if (new_line->end->y > new_line->start->y)
+		new_line->var_y = 1;
+	new_line->var_x = 1;
 	return (new_line);
 }
 
@@ -133,24 +136,27 @@ t_nlx_line	create_line(t_vec3d p1, t_vec3d p2)
  * @param p2 second point of the line
  * @return t_nlx_line the line object created
  */
-t_nlx_line	create_straight_line(t_vec3d p1, t_vec3d p2)
+t_nlx_line	*create_straight_line(t_vec3d *p1, t_vec3d *p2)
 {
-	t_nlx_line	straight;
+	t_nlx_line	*straight;
 
-	if (p1.y < p2.y)
+	straight = malloc(sizeof(t_nlx_line));
+	if (!straight)
+		return (NULL);
+	if (p1->y < p2->y)
 	{
-		straight.start = p1;
-		straight.end = p2;
+		straight->start = p1;
+		straight->end = p2;
 	}
 	else
 	{
-		straight.start = p2;
-		straight.end = p1;
+		straight->start = p2;
+		straight->end = p1;
 	}
-	straight.delta_x = 0;
-	straight.delta_y = fabs(straight.end.y - straight.start.y);
-	straight.var_y = 1;
-	straight.var_x = 0;
+	straight->delta_x = 0;
+	straight->delta_y = fabs(straight->end->y - straight->start->y);
+	straight->var_y = 1;
+	straight->var_x = 0;
 	return (straight);
 }
 
