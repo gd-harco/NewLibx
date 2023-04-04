@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:15:08 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/04 12:43:32 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/04 15:24:50 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_matrix
  */
 typedef struct s_proj_info
 {
-	t_matrix	m;
+	t_matrix	*m;
 	double		z_near;
 	double		z_far;
 	double		fov;
@@ -64,7 +64,7 @@ typedef struct s_proj_info
 //-----------------FUNCTIONS-----------------//
 
 void		create_identity_matrix(t_matrix *m);
-t_matrix	get_projection_matrix(t_proj_info *data);
-t_vec3d		multiply_vector_matrix(t_matrix m, t_vec3d *v);
+t_matrix	*get_projection_matrix(t_proj_info *data);
+t_vec3d		*multiply_vector_matrix(t_matrix *m, t_vec3d *v);
 
 #endif

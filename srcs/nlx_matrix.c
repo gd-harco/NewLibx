@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 16:01:04 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/04 15:18:18 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/04 15:28:20 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 
 /**
  * @brief Create a identity matrix object
- * @details this function transform the 4x4 identity matrix
- * passed in parameter into an identity matrix
+ * @details this function initialize the matrix
+ * passed in parameter as an identity matrix
  * @param m matrix to transform into an identity matrix. Must has been allocated
  */
 void	create_identity_matrix(t_matrix *m)
@@ -53,20 +53,22 @@ void	create_identity_matrix(t_matrix *m)
  * @details this function returns a projection matrix
  * based on the information about the projection passed in parameter
  * @param data structure containing the data needed to create the matrix
- * @return t_matrix the projection matrix allocated on the stack
- * @todo check with vfries if better to allocate on the heap
+ * @return t_matrix the projection matrix allocated on the heap. Must be freed
  */
-t_matrix	get_projection_matrix(t_proj_info *data)
+t_matrix	*get_projection_matrix(t_proj_info *data)
 {
-	t_matrix	proj_matrix;
+	t_matrix	*proj_matrix;
 
-	create_identity_matrix(&proj_matrix);
-	proj_matrix.m[0][0] = data->aspect_ratio * (1 / (tan(data->fov / 2)));
-	proj_matrix.m[1][1] = 1 / (tan(data->fov / 2));
-	proj_matrix.m[2][2] = data->z_far / (data->z_far - data->z_near);
-	proj_matrix.m[3][2] = (-data->z_far * data->z_near)
+	proj_matrix = malloc(sizeof(t_matrix));
+	if (!proj_matrix)
+		return (NULL);
+	create_identity_matrix(proj_matrix);
+	proj_matrix->m[0][0] = data->aspect_ratio * (1 / (tan(data->fov / 2)));
+	proj_matrix->m[1][1] = 1 / (tan(data->fov / 2));
+	proj_matrix->m[2][2] = data->z_far / (data->z_far - data->z_near);
+	proj_matrix->m[3][2] = (-data->z_far * data->z_near)
 		/ (data->z_far - data->z_near);
-	proj_matrix.m[2][3] = 1;
+	proj_matrix->m[2][3] = 1;
 	return (proj_matrix);
 }
 
@@ -77,28 +79,29 @@ t_matrix	get_projection_matrix(t_proj_info *data)
  * @param m matrix to multiply
  * @param v vector to multiply
  * @return t_vec3d the vector resulting of the multiplication,
- * allocated on the heap
+ * allocated on the heap. Must be freed
  */
-t_vec3d	multiply_vector_matrix(t_matrix m, t_vec3d *v)
+t_vec3d	*multiply_vector_matrix(t_matrix *m, t_vec3d *v)
 {
 	t_vec3d	*new_v;
 	float	w;
 
-	//TODO secure malloc
 	new_v = malloc(sizeof(t_vec3d));
-	new_v->x = v->x * m.m[0][0] + v->y * m.m[1][0]
-		+ v->z * m.m[2][0] + m.m[3][0];
-	new_v->y = v->x * m.m[0][1] + v->y * m.m[1][1]
-		+ v->z * m.m[2][1] + m.m[3][1];
-	new_v->z = v->x * m.m[0][2] + v->y * m.m[1][2]
-		+ v->z * m.m[2][2] + m.m[3][2];
-	w = v->x * m.m[0][3] + v->y * m.m[1][3]
-		+ v->z * m.m[2][3] + m.m[3][3];
+	if (!new_v)
+		return (NULL);
+	new_v->x = v->x * m->m[0][0] + v->y * m->m[1][0]
+		+ v->z * m->m[2][0] + m->m[3][0];
+	new_v->y = v->x * m->m[0][1] + v->y * m->m[1][1]
+		+ v->z * m->m[2][1] + m->m[3][1];
+	new_v->z = v->x * m->m[0][2] + v->y * m->m[1][2]
+		+ v->z * m->m[2][2] + m->m[3][2];
+	w = v->x * m->m[0][3] + v->y * m->m[1][3]
+		+ v->z * m->m[2][3] + m->m[3][3];
 	if (w != 0)
 	{
 		new_v->x /= w;
 		new_v->y /= w;
 		new_v->z /= w;
 	}
-	return (*new_v);
+	return (new_v);
 }
