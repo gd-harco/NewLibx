@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 16:01:04 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/03 22:08:51 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/04 15:18:18 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	create_identity_matrix(t_matrix *m)
  * @return t_matrix the projection matrix allocated on the stack
  * @todo check with vfries if better to allocate on the heap
  */
-t_matrix	get_projection_matrix(t_proj_m *data)
+t_matrix	get_projection_matrix(t_proj_info *data)
 {
 	t_matrix	proj_matrix;
 
