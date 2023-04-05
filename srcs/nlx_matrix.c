@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 16:01:04 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/04 15:28:20 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/05 13:15:11 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,31 +77,25 @@ t_matrix	*get_projection_matrix(t_proj_info *data)
  * @details this function multiplies a matrix by a vector,
  * returning a vector that can be used to draw a point on the screen
  * @param m matrix to multiply
- * @param v vector to multiply
- * @return t_vec3d the vector resulting of the multiplication,
- * allocated on the heap. Must be freed
+ * @param source_vec vector to multiply
+ * @param result_vec vector containing the result of the multiplication
  */
-t_vec3d	*multiply_vector_matrix(t_matrix *m, t_vec3d *v)
+void multiply_vector_matrix(t_matrix *m, t_vec3d *source_vec, t_vec3d *result_vec)
 {
-	t_vec3d	*new_v;
-	float	w;
+	double	w;
 
-	new_v = malloc(sizeof(t_vec3d));
-	if (!new_v)
-		return (NULL);
-	new_v->x = v->x * m->m[0][0] + v->y * m->m[1][0]
-		+ v->z * m->m[2][0] + m->m[3][0];
-	new_v->y = v->x * m->m[0][1] + v->y * m->m[1][1]
-		+ v->z * m->m[2][1] + m->m[3][1];
-	new_v->z = v->x * m->m[0][2] + v->y * m->m[1][2]
-		+ v->z * m->m[2][2] + m->m[3][2];
-	w = v->x * m->m[0][3] + v->y * m->m[1][3]
-		+ v->z * m->m[2][3] + m->m[3][3];
+	result_vec->x = source_vec->x * m->m[0][0] + source_vec->y * m->m[1][0]
+			  + source_vec->z * m->m[2][0] + m->m[3][0];
+	result_vec->y = source_vec->x * m->m[0][1] + source_vec->y * m->m[1][1]
+			  + source_vec->z * m->m[2][1] + m->m[3][1];
+	result_vec->z = source_vec->x * m->m[0][2] + source_vec->y * m->m[1][2]
+			  + source_vec->z * m->m[2][2] + m->m[3][2];
+	w = source_vec->x * m->m[0][3] + source_vec->y * m->m[1][3]
+		+ source_vec->z * m->m[2][3] + m->m[3][3];
 	if (w != 0)
 	{
-		new_v->x /= w;
-		new_v->y /= w;
-		new_v->z /= w;
+		result_vec->x /= w;
+		result_vec->y /= w;
+		result_vec->z /= w;
 	}
-	return (new_v);
 }
