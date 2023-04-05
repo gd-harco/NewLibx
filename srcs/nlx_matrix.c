@@ -82,7 +82,7 @@ t_matrix	*get_projection_matrix(t_proj_info *data)
  */
 void multiply_vector_matrix(t_matrix *m, t_vec3d *source_vec, t_vec3d *result_vec)
 {
-	double	w;
+	float 	w;
 
 	result_vec->x = source_vec->x * m->m[0][0] + source_vec->y * m->m[1][0]
 			  + source_vec->z * m->m[2][0] + m->m[3][0];
