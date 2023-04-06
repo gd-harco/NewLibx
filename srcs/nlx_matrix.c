@@ -3,6 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   nlx_matrix.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: gd-harco <gd-harco@student.42lyon.f>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/06 14:54:50 by gd-harco          #+#    #+#             */
+/*   Updated: 2023/04/06 14:56:21 by gd-harco         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   nlx_matrix.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 16:01:04 by gd-harco          #+#    #+#             */
@@ -22,12 +34,12 @@
 #include <math.h>
 
 /**
- * @brief Create a identity matrix object
+ * @brief Initialize a matrix object
  * @details this function initialize the matrix
- * passed in parameter as an identity matrix
- * @param m matrix to transform into an identity matrix. Must has been allocated
+ * passed in parameter as a matrix filled with 0
+ * @param m matrix to initialize. Must has been allocated
  */
-void	create_identity_matrix(t_matrix *m)
+void	initialize_matrix(t_matrix *m)
 {
 	int	i;
 	int	j;
@@ -35,15 +47,9 @@ void	create_identity_matrix(t_matrix *m)
 	i = 0;
 	while (i < 4)
 	{
-		j = 0;
-		while (j < 4)
-		{
-			if (i == j)
-				m->m[i][j] = 1;
-			else
-				m->m[i][j] = 0;
-			j++;
-		}
+		j = -1;
+		while (++j < 4)
+			m->m[i][j] = 0;
 		i++;
 	}
 }
@@ -62,13 +68,14 @@ t_matrix	*get_projection_matrix(t_proj_info *data)
 	proj_matrix = malloc(sizeof(t_matrix));
 	if (!proj_matrix)
 		return (NULL);
-	create_identity_matrix(proj_matrix);
-	proj_matrix->m[0][0] = data->aspect_ratio * (1 / (tan(data->fov / 2)));
-	proj_matrix->m[1][1] = 1 / (tan(data->fov / 2));
+	initialize_matrix(proj_matrix);
+	proj_matrix->m[0][0] = data->aspect_ratio * data->fov_rad;
+	proj_matrix->m[1][1] = data->fov_rad;
 	proj_matrix->m[2][2] = data->z_far / (data->z_far - data->z_near);
 	proj_matrix->m[3][2] = (-data->z_far * data->z_near)
 		/ (data->z_far - data->z_near);
-	proj_matrix->m[2][3] = 1;
+	proj_matrix->m[2][3] = 1.0f;
+	proj_matrix->m[3][3] = 0.0f;
 	return (proj_matrix);
 }
 

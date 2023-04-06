@@ -25,6 +25,7 @@
 # include "nlx_vec.h"
 # include <math.h>
 
+
 //-----------------STRUCTURES-----------------//
 
 /**
@@ -55,10 +56,11 @@ typedef struct s_matrix
 typedef struct s_proj_info
 {
 	t_matrix	*m;
-	double		z_near;
-	double		z_far;
-	double		fov;
-	double		aspect_ratio;
+	float		z_near;
+	float		z_far;
+	float		fov;
+	float		aspect_ratio;
+	float		fov_rad;
 }	t_proj_info;
 
 //-----------------FUNCTIONS-----------------//
