@@ -33,8 +33,8 @@
  */
 void	nlx_new_image(t_img *img, void *mlx, int width, int height)
 {
-	img->img = mlx_new_image(mlx, width, height);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+	img->img_ptr = mlx_new_image(mlx, width, height);
+	img->addr = mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
 	img->width = width;
 	img->height = height;

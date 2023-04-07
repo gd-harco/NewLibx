@@ -84,25 +84,25 @@ t_matrix	*get_projection_matrix(t_proj_info *data)
  * @details this function multiplies a matrix by a vector,
  * returning a vector that can be used to draw a point on the screen
  * @param m matrix to multiply
- * @param source_vec vector to multiply
- * @param result_vec vector containing the result of the multiplication
+ * @param s_vec vector to multiply
+ * @param r_vec vector containing the result of the multiplication
  */
-void multiply_vector_matrix(t_matrix *m, t_vec3d *source_vec, t_vec3d *result_vec)
+void	multiply_vector_matrix(t_matrix *m, t_vec3d *s_vec, t_vec3d *r_vec)
 {
-	float 	w;
+	float	w;
 
-	result_vec->x = source_vec->x * m->m[0][0] + source_vec->y * m->m[1][0]
-			  + source_vec->z * m->m[2][0] + m->m[3][0];
-	result_vec->y = source_vec->x * m->m[0][1] + source_vec->y * m->m[1][1]
-			  + source_vec->z * m->m[2][1] + m->m[3][1];
-	result_vec->z = source_vec->x * m->m[0][2] + source_vec->y * m->m[1][2]
-			  + source_vec->z * m->m[2][2] + m->m[3][2];
-	w = source_vec->x * m->m[0][3] + source_vec->y * m->m[1][3]
-		+ source_vec->z * m->m[2][3] + m->m[3][3];
+	r_vec->x = s_vec->x * m->m[0][0] + s_vec->y * m->m[1][0]
+		+ s_vec->z * m->m[2][0] + m->m[3][0];
+	r_vec->y = s_vec->x * m->m[0][1] + s_vec->y * m->m[1][1]
+		+ s_vec->z * m->m[2][1] + m->m[3][1];
+	r_vec->z = s_vec->x * m->m[0][2] + s_vec->y * m->m[1][2]
+		+ s_vec->z * m->m[2][2] + m->m[3][2];
+	w = s_vec->x * m->m[0][3] + s_vec->y * m->m[1][3]
+		+ s_vec->z * m->m[2][3] + m->m[3][3];
 	if (w != 0.0f)
 	{
-		result_vec->x /= w;
-		result_vec->y /= w;
-		result_vec->z /= w;
+		r_vec->x /= w;
+		r_vec->y /= w;
+		r_vec->z /= w;
 	}
 }
