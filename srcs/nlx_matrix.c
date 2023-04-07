@@ -99,7 +99,7 @@ void multiply_vector_matrix(t_matrix *m, t_vec3d *source_vec, t_vec3d *result_ve
 			  + source_vec->z * m->m[2][2] + m->m[3][2];
 	w = source_vec->x * m->m[0][3] + source_vec->y * m->m[1][3]
 		+ source_vec->z * m->m[2][3] + m->m[3][3];
-	if (w != 0)
+	if (w != 0.0f)
 	{
 		result_vec->x /= w;
 		result_vec->y /= w;

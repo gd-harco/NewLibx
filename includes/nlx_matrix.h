@@ -37,7 +37,7 @@
  */
 typedef struct s_matrix
 {
-	double	m[4][4];
+	float 	m[4][4];
 }				t_matrix;
 
 
