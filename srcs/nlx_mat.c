@@ -71,21 +71,3 @@ t_matrix	*get_projection_matrix(t_proj_info *data)
 		/ (data->z_far - data->z_near);
 	return (proj_matrix);
 }
-
-/**
- * @brief Get the translation matrix object
- * @details this function returns a translation matrix
- * based on the information about the translation passed in parameter
- * @param data structure containing the data needed to create the matrix
- * @return t_matrix the translation matrix allocated on the heap. Must be freed
- */
-t_matrix	*get_translation_matrix(t_translation_info *data)
-{
-	t_matrix	*translation_matrix;
-
-	translation_matrix = create_identity_matrix();
-	translation_matrix->m[3][0] = data->translate_x;
-	translation_matrix->m[3][1] = data->translate_y;
-	translation_matrix->m[3][2] = data->translate_z;
-	return (translation_matrix);
-}

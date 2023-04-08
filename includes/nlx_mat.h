@@ -78,6 +78,7 @@ t_matrix	*get_x_rotation_matrix(float angle);
 t_matrix	*get_y_rotation_matrix(float angle);
 t_matrix	*get_z_rotation_matrix(float angle);
 t_matrix	*get_projection_matrix(t_proj_info *data);
+t_matrix	*get_translation_matrix(float trans_x, float trans_y, float trans_z);
 t_matrix	multiply_matrix_matrix(t_matrix *m1, t_matrix *m2);
 void 		multiply_vector_matrix(t_matrix *m, t_vec3d *source_vec, t_vec3d *result_vec);
 
