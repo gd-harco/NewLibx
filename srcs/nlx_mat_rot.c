@@ -1,4 +1,4 @@
-#include "nlx_matrix.h"
+#include "nlx_mat.h"
 
 /**
  * @brief Create a rotation matrix object for the x axis
