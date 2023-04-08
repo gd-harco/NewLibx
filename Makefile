@@ -33,6 +33,7 @@ SRCS_LIST		=	nlx_img.c			\
 					nlx_mat_multiply.c	\
 					nlx_mat_rot.c		\
 					nlx_mat_trans.c		\
+					nlx_mat_world.c		\
 					nlx_win.c
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}

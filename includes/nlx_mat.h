@@ -80,5 +80,6 @@ t_matrix	*get_translation_matrix(
 t_matrix	multiply_matrix_matrix(t_matrix *m1, t_matrix *m2);
 void		multiply_vector_matrix(
 				t_matrix *m, t_vec3d *source_vec, t_vec3d *result_vec);
-
+t_matrix	get_world_matrix(t_matrix *rot_z, t_matrix *rot_x,
+				t_matrix *rot_y, t_matrix *trans);
 #endif
