@@ -10,18 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   nlx_matrix.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/03 16:01:04 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/05 13:15:11 by gd-harco         ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
-
 /**
  * @file nlx_matrix.c
  *
@@ -32,7 +20,6 @@
  */
 #include "nlx_matrix.h"
 
-
 /**
  * @brief Create a identity matrix object
  * @details this function creates a 4x4 identity matrix
@@ -41,8 +28,8 @@
  */
 t_matrix	*create_identity_matrix(void)
 {
-	int	row;
-	int	col;
+	int			row;
+	int			col;
 	t_matrix	*returned_m;
 
 	returned_m = malloc(sizeof(t_matrix));

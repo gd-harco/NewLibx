@@ -73,9 +73,11 @@ typedef struct s_translation_info
 
 
 //-----------------FUNCTIONS-----------------//
-
 t_matrix	*create_identity_matrix(void);
+t_matrix	*get_x_rotation_matrix(float angle);
+t_matrix	*get_y_rotation_matrix(float angle);
+t_matrix	*get_z_rotation_matrix(float angle);
 t_matrix	*get_projection_matrix(t_proj_info *data);
-void multiply_vector_matrix(t_matrix *m, t_vec3d *source_vec, t_vec3d *result_vec);
+void 		multiply_vector_matrix(t_matrix *m, t_vec3d *source_vec, t_vec3d *result_vec);
 
 #endif
