@@ -31,7 +31,7 @@
  * @date 2023-04-03
  */
 #include "nlx_matrix.h"
-#include <math.h>
+
 
 /**
  * @brief Create a identity matrix object
