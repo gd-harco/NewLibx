@@ -63,9 +63,18 @@ typedef struct s_proj_info
 	float		fov_rad;
 }	t_proj_info;
 
+typedef struct s_translation_info
+{
+	t_matrix	*m;
+	float		translate_x;
+	float		translate_y;
+	float		translate_z;
+}				t_translation_info;
+
+
 //-----------------FUNCTIONS-----------------//
 
-void		create_identity_matrix(t_matrix *m);
+t_matrix	*create_identity_matrix(void);
 t_matrix	*get_projection_matrix(t_proj_info *data);
 void multiply_vector_matrix(t_matrix *m, t_vec3d *source_vec, t_vec3d *result_vec);
 
