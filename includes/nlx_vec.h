@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:03:31 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/04 15:29:42 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/09 16:45:52 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_vec3d
 	float	x;
 	float	y;
 	float	z;
+	float	w;
 }				t_vec3d;
 
 #endif

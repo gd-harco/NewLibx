@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 16:00:50 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/08 16:04:58 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/09 16:57:33 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,14 @@
  */
 void	multiply_vector_matrix(t_matrix *m, t_vec3d *s_vec, t_vec3d *r_vec)
 {
-	float	w;
-
 	r_vec->x = s_vec->x * m->m[0][0] + s_vec->y * m->m[1][0]
-		+ s_vec->z * m->m[2][0] + m->m[3][0];
+		+ s_vec->z * m->m[2][0] + s_vec->w * m->m[3][0];
 	r_vec->y = s_vec->x * m->m[0][1] + s_vec->y * m->m[1][1]
-		+ s_vec->z * m->m[2][1] + m->m[3][1];
+		+ s_vec->z * m->m[2][1] + s_vec->w * m->m[3][1];
 	r_vec->z = s_vec->x * m->m[0][2] + s_vec->y * m->m[1][2]
-		+ s_vec->z * m->m[2][2] + m->m[3][2];
-	w = s_vec->x * m->m[0][3] + s_vec->y * m->m[1][3]
-		+ s_vec->z * m->m[2][3] + m->m[3][3];
-	if (w != 0.0f)
-	{
-		r_vec->x /= w;
-		r_vec->y /= w;
-		r_vec->z /= w;
-	}
+		+ s_vec->z * m->m[2][2] + s_vec->w * m->m[3][2];
+	r_vec->w = s_vec->x * m->m[0][3] + s_vec->y * m->m[1][3]
+		+ s_vec->z * m->m[2][3] + s_vec->w * m->m[3][3];
 }
 
 /**
@@ -63,26 +55,22 @@ void	multiply_vector_matrix(t_matrix *m, t_vec3d *s_vec, t_vec3d *r_vec)
 t_matrix	multiply_matrix_matrix(t_matrix *m1, t_matrix *m2)
 {
 	t_matrix	result;
-	int			row;
-	int			col;
-	int			i;
+	int			y;
+	int			x;
 
-	row = 0;
-	while (row < 4)
+	y = 0;
+	while (y < 4)
 	{
-		col = 0;
-		while (col < 4)
+		x = 0;
+		while (x < 4)
 		{
-			i = 0;
-			result.m[row][col] = 0;
-			while (i < 4)
-			{
-				result.m[row][col] += m1->m[row][i] * m2->m[i][col];
-				i++;
-			}
-			col++;
+			result.m[x][y] = m1->m[x][0] * m2->m[0][y]
+				+ m1->m[x][1] * m2->m[1][y]
+				+ m1->m[x][2] * m2->m[2][y]
+				+ m1->m[x][3] * m2->m[3][y];
+			x++;
 		}
-		row++;
+		y++;
 	}
 	return (result);
 }

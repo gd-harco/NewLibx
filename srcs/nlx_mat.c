@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nlx_matrix.c                                       :+:      :+:    :+:   */
+/*   nlx_mat.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-harco <gd-harco@student.42lyon.f>       +#+  +:+       +#+        */
+/*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:54:50 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/06 14:56:21 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/04/09 16:35:59 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,14 @@ t_matrix	*get_projection_matrix(t_proj_info *data)
 {
 	t_matrix	*proj_matrix;
 
-	proj_matrix = create_identity_matrix();
+	proj_matrix = malloc(sizeof(t_matrix));
+	for (int i = 0; i < 4; i++)
+		for (int j = 0; j < 4; j++)
+			proj_matrix->m[i][j] = 0.0f;
 	proj_matrix->m[0][0] = data->aspect_ratio * data->fov_rad;
 	proj_matrix->m[1][1] = data->fov_rad;
 	proj_matrix->m[2][2] = data->z_far / (data->z_far - data->z_near);
-	proj_matrix->m[3][2] = (-data->z_far * data->z_near)
-		/ (data->z_far - data->z_near);
+	proj_matrix->m[3][2] = -proj_matrix->m[2][2] * data->z_near;
+	proj_matrix->m[2][3] = 1.0f;
 	return (proj_matrix);
 }

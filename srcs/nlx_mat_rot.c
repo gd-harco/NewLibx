@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 16:05:03 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/08 16:05:05 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/09 16:42:57 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ t_matrix	*get_x_rotation_matrix(float angle)
 	t_matrix	*rot_matrix;
 
 	rot_matrix = create_identity_matrix();
-	rot_matrix->m[1][1] = cosf(angle);
-	rot_matrix->m[1][2] = -sinf(angle);
-	rot_matrix->m[2][1] = sinf(angle);
-	rot_matrix->m[2][2] = cosf(angle);
+	rot_matrix->m[1][1] = cosf(angle * 0.5f);
+	rot_matrix->m[1][2] = sinf(angle * 0.5f);
+	rot_matrix->m[2][1] = -	rot_matrix->m[1][2];
+	rot_matrix->m[2][2] = rot_matrix->m[1][1];
 	return (rot_matrix);
 }
 
@@ -41,8 +41,8 @@ t_matrix	*get_y_rotation_matrix(float angle)
 	rot_matrix = create_identity_matrix();
 	rot_matrix->m[0][0] = cosf(angle);
 	rot_matrix->m[0][2] = sinf(angle);
-	rot_matrix->m[2][0] = -sinf(angle);
-	rot_matrix->m[2][2] = cosf(angle);
+	rot_matrix->m[2][0] = -rot_matrix->m[0][2];
+	rot_matrix->m[2][2] = rot_matrix->m[0][0];
 	return (rot_matrix);
 }
 
@@ -57,8 +57,8 @@ t_matrix	*get_z_rotation_matrix(float angle)
 
 	rot_matrix = create_identity_matrix();
 	rot_matrix->m[0][0] = cosf(angle);
-	rot_matrix->m[0][1] = -sinf(angle);
-	rot_matrix->m[1][0] = sinf(angle);
-	rot_matrix->m[1][1] = cosf(angle);
+	rot_matrix->m[0][1] = sinf(angle);
+	rot_matrix->m[1][0] = -rot_matrix->m[0][1];
+	rot_matrix->m[1][1] = rot_matrix->m[0][0];
 	return (rot_matrix);
 }
