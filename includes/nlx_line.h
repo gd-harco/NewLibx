@@ -1,12 +1,12 @@
 /* ************************************************************************** */
-/*                                                                            */
+/*	                                                                        */
 /*                                                        :::      ::::::::   */
 /*   nlx_line.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:16:50 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/04 14:18:39 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/09 18:55:46 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,35 +29,29 @@
 
 //-----------------STRUCTURES-----------------//
 
-/**
- * @struct s_nlx_line nlx_line.h
- * @brief Structure to store a line and its properties
- * @ingroup line
- * @ingroup draw
- * @param start The start point of the line. Must be provided.
- * @param end The end point of the line. Must be provided.
- * @param delta_x The difference between the x coordinates
- * of the start and end points. Calculated automatically.
- * @param delta_y The difference between the y coordinates
- * of the start and end points. Calculated automatically.
- * @param var_y The variation of the y coordinate.
- * Used when drawing the line. Determined automatically.
- * @param var_x The variation of the x coordinate.
- * Used when drawing the line. Determined automatically.
-*/
+typedef struct s_2d_point
+{
+    int    x;
+    int    y;
+}        t_2d_point;
+
 typedef struct s_nlx_line
 {
-	t_vec3d	*start;
-	t_vec3d	*end;
-	int		delta_x;
-	int		delta_y;
-	int		var_y;
-	int		var_x;
-}				t_nlx_line;
+    t_2d_point    start;
+    t_2d_point    end;
+    int            error_x;
+    int            error_y;
+    int            diff_x;
+    int            diff_y;
+    int            starting_error_x;
+    int            starting_error_y;
+    int            x_incr;
+    int            y_incr;
+}                t_nlx_line;
 
 //-----------------FUNCTIONS-----------------//
 
-t_nlx_line	*create_line(t_vec3d *p1, t_vec3d *p2);
-void		nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color);
+t_nlx_line    *create_line(t_vec3d *p1, t_vec3d *p2);
+void        nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color);
 
 #endif

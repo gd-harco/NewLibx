@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:18:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/09 18:12:28 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/09 19:04:24 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,141 +24,100 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-static bool			is_pixel_in_img(int x, int y, int height, int width);
-static t_nlx_line	*create_straight_line(t_vec3d *p1, t_vec3d *p2);
-static void			nlx_draw_straight_line(t_img *img,
-						t_nlx_line *to_draw, int color);
+// static bool			is_pixel_in_img(int x, int y, int height, int width);
 
-/**
- * @brief draw a line on the image
- * @details this function uses the Bresenham algorithm to draw a line
- * using the function nlx_pixel_put.
- * if the line is vertical, the function nlx_draw_straight_line is called
- * @param img image to draw on, as a t_img structure
- * @param to_draw line to draw on the image, as a t_nlx_line structure
- * @param color color of the line to draw (in hexa) or as defined in nlx_color.h
- * @see nlx_color.h
- * @return nothing
- */
-void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
+static void	draw_straight_line(t_2d_point start, t_2d_point end, t_img *img)
 {
-	int		x;
-	int		y;
-	float	m;
-	float	e;
-
-	if (to_draw->delta_x == 0)
+	if (start.x == end.x)
 	{
-		return (nlx_draw_straight_line(img, to_draw, color));
+		if (start.y > end.y)
+			return (draw_straight_line(end, start, img));
+		while (start.y <= end.y)
+			nlx_pixel_put(img, start.x, start.y++, COLOR_WHITE);
 	}
-	m = to_draw->delta_y / to_draw->delta_x;
-	x = to_draw->start->x;
-	y = to_draw->start->y;
-	e = 0;
-	while (x <= to_draw->end->x)
+	else
 	{
-		if (is_pixel_in_img(x, y, img->height, img->width))
-			nlx_pixel_put(img, x, y, color);
-		e -= m;
-		x += to_draw->var_x;
-		if (e < -0.5)
+		if (start.x > end.x)
+			return (draw_straight_line(end, start, img));
+		while (start.x <= end.x)
+			nlx_pixel_put(img, start.x++, start.y, COLOR_WHITE);
+	}
+}
+
+static void	draw_low_slope(t_2d_point start,
+				t_nlx_line params, t_img *img)
+{
+	int	i;
+
+	i = -1;
+	while (++i <= params.starting_error_x)
+	{
+		nlx_pixel_put(img, start.x, start.y, COLOR_WHITE);
+		start.x += params.x_incr;
+		params.error_x -= params.diff_y;
+		if (params.error_x < 0)
 		{
-			y += to_draw->var_y;
-			e += 1.0;
+			start.y += params.y_incr;
+			params.error_x += params.diff_x;
 		}
 	}
 }
 
-/**
- * @brief simplified version of nlx_draw_line for straight lines
- * @param img image to draw on, as a t_img structure
- * @param to_draw line to draw on the image, as a t_nlx_line structure
- * @param color color of the line to draw (in hexa) or as defined in nlx_color.h
- * @see nlx_color.h
- * @return nothing
- */
-static void	nlx_draw_straight_line(t_img *img, t_nlx_line *to_draw, int color)
+static void	draw_high_slope(t_2d_point start,
+				t_nlx_line params, t_img *img)
 {
-	int		y;
+	int	i;
 
-	y = to_draw->start->y;
-	while (y <= to_draw->end->y)
+	i = -1;
+	while (++i <= params.starting_error_y)
 	{
-		if (is_pixel_in_img(to_draw->start->x, y, img->height, img->width))
-			nlx_pixel_put(img, to_draw->start->x, y, color);
-		y++;
+		nlx_pixel_put(img, start.x, start.y, COLOR_WHITE);
+		start.y += params.y_incr;
+		params.error_y -= params.diff_x;
+		if (params.error_y < 0)
+		{
+			start.x += params.x_incr;
+			params.error_y += params.diff_y;
+		}
 	}
 }
 
-/**
- * @brief Create a line object
- * @details create a line object from two points.
- * The order of the point doesn't matter, the function will determine it.
- * if the line is a straight line, the function will call create_straight_line
- * @param p1 first point of the line
- * @param p2 second point of the line
- * @return t_nlx_line the line object created,
- * allocated on the heap (must be freed)
- */
+void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
+{
+	if (to_draw->start.x == to_draw->end.x
+		|| to_draw->start.y == to_draw->end.y)
+		return (draw_straight_line(to_draw->start, to_draw->end, img));
+	if (to_draw->starting_error_x > to_draw->starting_error_y)
+		draw_low_slope(to_draw->start, *to_draw, img);
+	else
+		draw_high_slope(to_draw->start, *to_draw, img);
+	(void)color;
+}
+
 t_nlx_line	*create_line(t_vec3d *p1, t_vec3d *p2)
 {
-	t_nlx_line	*new_line;
+	t_nlx_line	*line;
 
-	new_line = malloc(sizeof(t_nlx_line));
-	if (!new_line)
+	line = malloc(sizeof(t_nlx_line));
+	if (!line)
 		return (NULL);
-	if (p1->x < p2->x)
-	{
-		new_line->start = p1;
-		new_line->end = p2;
-	}
-	else if (p1->x > p2->x)
-	{
-		new_line->start = p2;
-		new_line->end = p1;
-	}
-	else
-		return (create_straight_line(p1, p2));
-	new_line->delta_x = fabs(new_line->end->x - new_line->start->x);
-	new_line->delta_y = fabs(new_line->end->y - new_line->start->y);
-	if (new_line->end->y < new_line->start->y)
-		new_line->var_y = -1;
-	else if (new_line->end->y > new_line->start->y)
-		new_line->var_y = 1;
-	new_line->var_x = 1;
-	return (new_line);
-}
-
-/**
- * @brief Create a straight line object
- * @details create a straight line object from two points.
- * The order of the point doesn't matter, the function will determined it.
- * @param p1 first point of the line
- * @param p2 second point of the line
- * @return t_nlx_line the line object created
- */
-static t_nlx_line	*create_straight_line(t_vec3d *p1, t_vec3d *p2)
-{
-	t_nlx_line	*straight;
-
-	straight = malloc(sizeof(t_nlx_line));
-	if (!straight)
-		return (NULL);
-	if (p1->y < p2->y)
-	{
-		straight->start = p1;
-		straight->end = p2;
-	}
-	else
-	{
-		straight->start = p2;
-		straight->end = p1;
-	}
-	straight->delta_x = 0;
-	straight->delta_y = fabs(straight->end->y - straight->start->y);
-	straight->var_y = 1;
-	straight->var_x = 0;
-	return (straight);
+	line->start.x = p1->x;
+	line->start.y = p1->y;
+	line->end.x = p2->x;
+	line->end.y = p2->y;
+	line->error_x = abs((int)(line->end.x - line->start.x + 0.5f));
+	line->error_y = abs((int)(line->end.y - line->start.y + 0.5f));
+	line->diff_x = 2 * line->error_x;
+	line->diff_y = 2 * line->error_y;
+	line->starting_error_x = line->error_x;
+	line->starting_error_y = line->error_y;
+	line->x_incr = 1;
+	if (line->start.x > line->end.x)
+		line->x_incr = -1;
+	line->y_incr = 1;
+	if (line->start.y > line->end.y)
+		line->y_incr = -1;
+	return (line);
 }
 
 /**
@@ -169,12 +128,12 @@ static t_nlx_line	*create_straight_line(t_vec3d *p1, t_vec3d *p2)
  * @param width width of the image
  * @return true if the pixel is in the image, false otherwise
  */
-static bool	is_pixel_in_img(int x, int y, int height, int width)
-{
-	if (x >= 0 && x < width)
-	{
-		if (y >= 0 && y < height)
-			return (true);
-	}
-	return (false);
-}
+// static bool	is_pixel_in_img(int x, int y, int height, int width)
+// {
+// 	if (x >= 0 && x < width)
+// 	{
+// 		if (y >= 0 && y < height)
+// 			return (true);
+// 	}
+// 	return (false);
+// }
