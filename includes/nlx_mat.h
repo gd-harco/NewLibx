@@ -97,5 +97,5 @@ t_matrix	*get_translation_matrix(t_world_i *world);
 t_matrix	multiply_matrix_matrix(t_matrix *m1, t_matrix *m2);
 void		multiply_vector_matrix(
 				t_matrix *m, t_vec3d *source_vec, t_vec3d *result_vec);
-t_matrix	get_world_matrix(t_world_i *world);
+t_matrix	*get_world_matrix(t_world_i *world);
 #endif
