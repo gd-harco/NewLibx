@@ -62,11 +62,23 @@ t_matrix	*create_identity_matrix(void)
 t_matrix	*get_projection_matrix(t_proj_info *data)
 {
 	t_matrix	*proj_matrix;
+	int			row;
+	int			col;
 
 	proj_matrix = malloc(sizeof(t_matrix));
-	for (int i = 0; i < 4; i++)
-		for (int j = 0; j < 4; j++)
-			proj_matrix->m[i][j] = 0.0f;
+	if (!proj_matrix)
+		return (NULL);
+	row = 0;
+	while (row < 4)
+	{
+		col = 0;
+		while (col < 4)
+		{
+			proj_matrix->m[row][col] = 0.0f;
+			col++;
+		}
+		row++;
+	}
 	proj_matrix->m[0][0] = data->aspect_ratio * data->fov_rad;
 	proj_matrix->m[1][1] = data->fov_rad;
 	proj_matrix->m[2][2] = data->z_far / (data->z_far - data->z_near);
