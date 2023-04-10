@@ -13,11 +13,12 @@
 #include "nlx_mat.h"
 
 /**
- * @brief Get the translation matrix object
- * @details this function returns a translation matrix
- * based on the information about the translation passed in parameter
- * @param data structure containing the data needed to create the matrix
- * @return t_matrix the translation matrix allocated on the heap. Must be freed
+ * @brief Create a translation matrix.
+ * @param trans_x The value to translate on the x axis.
+ * @param trans_y The value to translate on the y axis.
+ * @param trans_z The value to translate on the z axis.
+ * @allocated_on Heap (must be freed)
+ * @return t_matrix* The transation matrix created.
  */
 t_matrix	*get_translation_matrix(float trans_x, float trans_y, float trans_z)
 {

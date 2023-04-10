@@ -13,9 +13,10 @@
 #include "nlx_mat.h"
 
 /**
- * @brief Create a rotation matrix object for the x axis
- * @param angle The angle to rotate by
- * @return t_matrix* The rotation matrix allocated on the heap.
+ * @brief Create a rotation matrix object for the x axis.
+ * @param angle The angle to rotate by.
+ * @allocated_on Heap (must be freed)
+ * @return t_matrix* The rotation matrix created.
  */
 t_matrix	*get_x_rotation_matrix(float angle)
 {
@@ -30,9 +31,10 @@ t_matrix	*get_x_rotation_matrix(float angle)
 }
 
 /**
- * @brief Create a rotation matrix object for the y axis
- * @param angle The angle to rotate by
- * @return t_matrix* The rotation matrix allocated on the heap.
+ * @brief Create a rotation matrix object for the y axis.
+ * @param angle The angle to rotate by.
+ * @allocated_on Heap (must be freed)
+ * @return t_matrix* The rotation matrix created.
  */
 t_matrix	*get_y_rotation_matrix(float angle)
 {
@@ -47,9 +49,10 @@ t_matrix	*get_y_rotation_matrix(float angle)
 }
 
 /**
- * @brief Create a rotation matrix object for the z axis
- * @param angle The angle to rotate by
- * @return t_matrix* The rotation matrix allocated on the heap.
+ * @brief Create a rotation matrix object for the z axis.
+ * @param angle The angle to rotate by.
+ * @allocated_on Heap (must be freed)
+ * @return t_matrix* The rotation matrix created.
  */
 t_matrix	*get_z_rotation_matrix(float angle)
 {

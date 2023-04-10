@@ -25,12 +25,12 @@
 #include "nlx_mat.h"
 
 /**
- * @brief Multiply a matrix by a vector
- * @details this function multiplies a matrix by a vector,
- * returning a vector that can be used to draw a point on the screen
- * @param m matrix to multiply
- * @param s_vec vector to multiply
- * @param r_vec vector containing the result of the multiplication
+ * @brief Multiply a matrix by a vector.
+ * @details This function multiplies a matrix by a vector,\n
+ * resulting in a vector that can be used to draw a point on the screen.
+ * @param m matrix to multiply.
+ * @param s_vec vector to multiply.
+ * @param r_vec vector containing the result of the multiplication.
  */
 void	multiply_vector_matrix(t_matrix *m, t_vec3d *s_vec, t_vec3d *r_vec)
 {
@@ -45,12 +45,13 @@ void	multiply_vector_matrix(t_matrix *m, t_vec3d *s_vec, t_vec3d *r_vec)
 }
 
 /**
- * @brief Multiply a matrix by a matrix
- * @details this function multiplies a matrix by a matrix,
- * returning a matrix that can be used to create the world matrix
- * @param m1 first matrix to multiply
- * @param m2 second matrix to multiply
- * @return t_matrix the result of the multiplication
+ * @brief Multiply a matrix by a matrix.
+ * @details This function multiplies a matrix by a matrix,\n
+ * returning a matrix that can be used to create the world matrix.
+ * @param m1 First matrix to multiply.
+ * @param m2 Second matrix to multiply.
+ * @allocated_on Stack
+ * @return t_matrix the result of the multiplication.
  */
 t_matrix	multiply_matrix_matrix(t_matrix *m1, t_matrix *m2)
 {

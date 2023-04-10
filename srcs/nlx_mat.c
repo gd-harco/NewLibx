@@ -21,10 +21,11 @@
 #include "nlx_mat.h"
 
 /**
- * @brief Create a identity matrix object
- * @details this function creates a 4x4 identity matrix
- * @return t_matrix* the identity matrix allocated on the heap. Must be freed
- * if the allocation fails, the function returns NULL
+ * @brief Create an identity matrix object.
+ * @details this function creates a 4x4 identity matrix.
+ * @allocated_on Heap (must be freed)
+ * @return t_matrix* the identity matrix. \n
+ * If the allocation fails, the function returns NULL
  */
 t_matrix	*create_identity_matrix(void)
 {
@@ -53,11 +54,12 @@ t_matrix	*create_identity_matrix(void)
 }
 
 /**
- * @brief Get the projection matrix object
- * @details this function returns a projection matrix
- * based on the information about the projection passed in parameter
- * @param data structure containing the data needed to create the matrix
- * @return t_matrix the projection matrix allocated on the heap. Must be freed
+ * @brief Get the projection matrix object.
+ * @details this function returns a projection matrix \n
+ * based on the information about the projection passed in parameter.
+ * @param data structure containing the data needed to create the matrix.
+ * @allocated_on Heap (must be freed)
+ * @return t_matrix the projection matrix.
  */
 t_matrix	*get_projection_matrix(t_proj_info *data)
 {

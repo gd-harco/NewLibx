@@ -128,7 +128,7 @@ void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
  * @brief create a line
  * @param p1 first point of the line
  * @param p2 second point of the line
- * @allocated_on Heap (Must be freed)
+ * @allocated_on Heap (must be freed)
  * @return a pointer to the line
  */
 t_nlx_line	*create_line(t_vec3d *p1, t_vec3d *p2)
