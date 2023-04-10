@@ -24,7 +24,7 @@ t_matrix	*get_x_rotation_matrix(float angle)
 	rot_matrix = create_identity_matrix();
 	rot_matrix->m[1][1] = cosf(angle * 0.5f);
 	rot_matrix->m[1][2] = sinf(angle * 0.5f);
-	rot_matrix->m[2][1] = -	rot_matrix->m[1][2];
+	rot_matrix->m[2][1] = -sinf(angle * 0.5f);
 	rot_matrix->m[2][2] = rot_matrix->m[1][1];
 	return (rot_matrix);
 }
