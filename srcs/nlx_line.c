@@ -26,6 +26,13 @@
 
 // static bool			is_pixel_in_img(int x, int y, int height, int width);
 
+/**
+ * @brief Draw a line on an image
+ * @details The function will create a line from two points
+ * @param start the starting point of the line
+ * @param params the parameters of the line
+ * @param img the image on which the line will be drawn
+ */
 static void	draw_straight_line(t_2d_point start, t_2d_point end, t_img *img)
 {
 	if (start.x == end.x)
@@ -44,6 +51,13 @@ static void	draw_straight_line(t_2d_point start, t_2d_point end, t_img *img)
 	}
 }
 
+/**
+ * @brief Draw a line on an image
+ * @details The function will create a line from two points
+ * @param start the starting point of the line
+ * @param params the parameters of the line
+ * @param img the image on which the line will be drawn
+ */
 static void	draw_low_slope(t_2d_point start,
 				t_nlx_line params, t_img *img)
 {
@@ -63,6 +77,13 @@ static void	draw_low_slope(t_2d_point start,
 	}
 }
 
+/**
+ * @brief Draw a line on an image
+ * @details The function will create a line from two points
+ * @param start the starting point of the line
+ * @param params the parameters of the line
+ * @param img the image on which the line will be drawn
+ */
 static void	draw_high_slope(t_2d_point start,
 				t_nlx_line params, t_img *img)
 {
@@ -82,6 +103,15 @@ static void	draw_high_slope(t_2d_point start,
 	}
 }
 
+/**
+ * @brief draw a line on an image
+ * @details the function will draw a line on the image with the given color.
+ * This function is just here to analyze the slope of the line
+ * and call the according function.
+ * @param img the image on which the line will be drawn
+ * @param to_draw the line to draw
+ * @param color the color of the line
+ */
 void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
 {
 	if (to_draw->start.x == to_draw->end.x
@@ -94,6 +124,13 @@ void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
 	(void)color;
 }
 
+/**
+ * @brief create a line
+ * @param p1 first point of the line
+ * @param p2 second point of the line
+ * @allocated_on Heap (Must be freed)
+ * @return a pointer to the line
+ */
 t_nlx_line	*create_line(t_vec3d *p1, t_vec3d *p2)
 {
 	t_nlx_line	*line;
@@ -119,21 +156,3 @@ t_nlx_line	*create_line(t_vec3d *p1, t_vec3d *p2)
 		line->y_incr = -1;
 	return (line);
 }
-
-/**
- * @brief check if a pixel is in the image
- * @param x x coordinate of the pixel
- * @param y y coordinate of the pixel
- * @param height height of the image
- * @param width width of the image
- * @return true if the pixel is in the image, false otherwise
- */
-// static bool	is_pixel_in_img(int x, int y, int height, int width)
-// {
-// 	if (x >= 0 && x < width)
-// 	{
-// 		if (y >= 0 && y < height)
-// 			return (true);
-// 	}
-// 	return (false);
-// }

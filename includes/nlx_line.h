@@ -29,29 +29,53 @@
 
 //-----------------STRUCTURES-----------------//
 
+/**
+ * @brief Structure representing a 2D point
+ * @ingroup line
+ * @details This structure is used to represent a 2D point
+ * @param x x coordinate of the point
+ * @param y y coordinate of the point
+ */
 typedef struct s_2d_point
 {
-    int    x;
-    int    y;
-}        t_2d_point;
+	int	x;
+	int	y;
+}		t_2d_point;
 
+/**
+ * @brief Structure representing a line
+ * @ingroup line
+ * @details This structure is used to represent a line
+ * @param start the starting point of the line
+ * @param end the ending point of the line
+ * @param error_x the error on the x axis
+ * @param error_y the error on the y axis
+ * @param diff_x the difference between the x coordinates
+ * of the starting and ending points
+ * @param diff_y the difference between the y coordinates
+ * of the starting and ending points
+ * @param starting_error_x the starting error on the x axis
+ * @param starting_error_y the starting error on the y axis
+ * @param x_incr the incrementation of the x coordinate
+ * @param y_incr the incrementation of the y coordinate
+ */
 typedef struct s_nlx_line
 {
-    t_2d_point    start;
-    t_2d_point    end;
-    int            error_x;
-    int            error_y;
-    int            diff_x;
-    int            diff_y;
-    int            starting_error_x;
-    int            starting_error_y;
-    int            x_incr;
-    int            y_incr;
-}                t_nlx_line;
+	t_2d_point	start;
+	t_2d_point	end;
+	int			error_x;
+	int			error_y;
+	int			diff_x;
+	int			diff_y;
+	int			starting_error_x;
+	int			starting_error_y;
+	int			x_incr;
+	int			y_incr;
+}				t_nlx_line;
 
 //-----------------FUNCTIONS-----------------//
 
-t_nlx_line    *create_line(t_vec3d *p1, t_vec3d *p2);
-void        nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color);
+t_nlx_line	*create_line(t_vec3d *p1, t_vec3d *p2);
+void		nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color);
 
 #endif
