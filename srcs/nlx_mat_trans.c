@@ -14,19 +14,17 @@
 
 /**
  * @brief Create a translation matrix.
- * @param trans_x The value to translate on the x axis.
- * @param trans_y The value to translate on the y axis.
- * @param trans_z The value to translate on the z axis.
+ * @param world The world structure.
  * @allocated_on Heap (must be freed)
- * @return t_matrix* The transation matrix created.
+ * @return t_matrix* The translation matrix created.
  */
-t_matrix	*get_translation_matrix(float trans_x, float trans_y, float trans_z)
+t_matrix	*get_translation_matrix(t_world_i *world)
 {
 	t_matrix	*translation_matrix;
 
 	translation_matrix = create_identity_matrix();
-	translation_matrix->m[3][0] = trans_x;
-	translation_matrix->m[3][1] = trans_y;
-	translation_matrix->m[3][2] = trans_z;
+	translation_matrix->m[3][0] = world->trans->translate_x;
+	translation_matrix->m[3][1] = world->trans->translate_y;
+	translation_matrix->m[3][2] = world->trans->translate_z;
 	return (translation_matrix);
 }

@@ -51,6 +51,7 @@ typedef struct s_matrix
  * @param aspect_ratio The aspect ratio of the screen.
  * Determined by the function that creates the matrix
  */
+
 typedef struct s_proj_info
 {
 	t_matrix	*m;
@@ -59,15 +60,32 @@ typedef struct s_proj_info
 	float		fov;
 	float		aspect_ratio;
 	float		fov_rad;
-}	t_proj_info;
+}				t_proj_info;
 
-typedef struct s_translation_info
+typedef struct s_trans_info
 {
-	t_matrix	*m;
 	float		translate_x;
 	float		translate_y;
 	float		translate_z;
-}				t_translation_info;
+	t_matrix	*m;
+}				t_trans_info;
+
+typedef struct s_rot_info
+{
+	float		rot_x;
+	float		rot_y;
+	float		rot_z;
+	t_matrix	*x_rot_m;
+	t_matrix	*y_rot_m;
+	t_matrix	*z_rot_m;
+}				t_rot_info;
+
+typedef struct s_world_i {
+	t_matrix		*world;
+	t_rot_info		*rot;
+	t_trans_info	*trans;
+	t_proj_info		*proj;
+}			t_world_i;
 
 //-----------------FUNCTIONS-----------------//
 t_matrix	*create_identity_matrix(void);
@@ -75,11 +93,9 @@ t_matrix	*get_x_rotation_matrix(float angle);
 t_matrix	*get_y_rotation_matrix(float angle);
 t_matrix	*get_z_rotation_matrix(float angle);
 t_matrix	*get_projection_matrix(t_proj_info *data);
-t_matrix	*get_translation_matrix(
-				float trans_x, float trans_y, float trans_z);
+t_matrix	*get_translation_matrix(t_world_i *world);
 t_matrix	multiply_matrix_matrix(t_matrix *m1, t_matrix *m2);
 void		multiply_vector_matrix(
 				t_matrix *m, t_vec3d *source_vec, t_vec3d *result_vec);
-t_matrix	get_world_matrix(t_matrix *rot_z, t_matrix *rot_x,
-				t_matrix *rot_y, t_matrix *trans);
+t_matrix	get_world_matrix(t_world_i *world);
 #endif
