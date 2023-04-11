@@ -81,7 +81,7 @@ typedef struct s_rot_info
 }				t_rot_info;
 
 typedef struct s_world_i {
-	t_matrix		*world;
+	t_matrix		*world_m;
 	t_rot_info		*rot;
 	t_trans_info	*trans;
 	t_proj_info		*proj;
