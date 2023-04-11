@@ -18,13 +18,13 @@
  * @allocated_on Heap (must be freed)
  * @return t_matrix* The translation matrix created.
  */
-t_matrix	*get_translation_matrix(t_world_i *world)
+t_matrix	*get_translation_matrix(t_trans_info *trans)
 {
 	t_matrix	*translation_matrix;
 
 	translation_matrix = create_identity_matrix();
-	translation_matrix->m[3][0] = world->trans->translate_x;
-	translation_matrix->m[3][1] = world->trans->translate_y;
-	translation_matrix->m[3][2] = world->trans->translate_z;
+	translation_matrix->m[3][0] = trans->translate_x;
+	translation_matrix->m[3][1] = trans->translate_y;
+	translation_matrix->m[3][2] = trans->translate_z;
 	return (translation_matrix);
 }
