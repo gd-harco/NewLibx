@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:15:08 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/08 16:03:29 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/11 19:24:22 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct s_rot_info
 }				t_rot_info;
 
 typedef struct s_world_i {
-	t_matrix		*world;
+	t_matrix		*world_m;
 	t_rot_info		*rot;
 	t_trans_info	*trans;
 	t_proj_info		*proj;
@@ -93,7 +93,7 @@ t_matrix	*get_x_rotation_matrix(float angle);
 t_matrix	*get_y_rotation_matrix(float angle);
 t_matrix	*get_z_rotation_matrix(float angle);
 t_matrix	*get_projection_matrix(t_proj_info *data);
-t_matrix	*get_translation_matrix(t_world_i *world);
+t_matrix	*get_translation_matrix(t_trans_info *trans);
 t_matrix	multiply_matrix_matrix(t_matrix *m1, t_matrix *m2);
 void		multiply_vector_matrix(
 				t_matrix *m, t_vec3d *source_vec, t_vec3d *result_vec);
