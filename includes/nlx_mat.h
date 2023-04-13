@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:15:08 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/11 19:24:22 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/13 13:47:09 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define NLX_MAT_H
 
 # include "nlx_vec.h"
+# include <stdbool.h>
 # include <math.h>
 
 //-----------------STRUCTURES-----------------//
@@ -81,6 +82,8 @@ typedef struct s_rot_info
 }				t_rot_info;
 
 typedef struct s_world_i {
+	bool			key_is_pressed;
+	int				key_pressed;
 	t_matrix		*world_m;
 	t_rot_info		*rot;
 	t_trans_info	*trans;
