@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:18:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/09 19:04:24 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/12 20:14:01 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-// static bool			is_pixel_in_img(int x, int y, int height, int width);
+static bool			is_pixel_in_img(t_2d_point to_check, int height, int width);
 
 /**
  * @brief Draw a line on an image
@@ -40,14 +40,22 @@ static void	draw_straight_line(t_2d_point start, t_2d_point end, t_img *img)
 		if (start.y > end.y)
 			return (draw_straight_line(end, start, img));
 		while (start.y <= end.y)
-			nlx_pixel_put(img, start.x, start.y++, COLOR_WHITE);
+		{
+			if (is_pixel_in_img(start, img->height, img->width))
+				nlx_pixel_put(img, start.x, start.y, COLOR_WHITE);
+			start.y++;
+		}
 	}
 	else
 	{
 		if (start.x > end.x)
 			return (draw_straight_line(end, start, img));
 		while (start.x <= end.x)
-			nlx_pixel_put(img, start.x++, start.y, COLOR_WHITE);
+		{
+			if (is_pixel_in_img(start, img->height, img->width))
+				nlx_pixel_put(img, start.x, start.y, COLOR_WHITE);
+			start.x++;
+		}
 	}
 }
 
@@ -66,7 +74,8 @@ static void	draw_low_slope(t_2d_point start,
 	i = -1;
 	while (++i <= params.starting_error_x)
 	{
-		nlx_pixel_put(img, start.x, start.y, COLOR_WHITE);
+		if (is_pixel_in_img(start, img->height, img->width))
+			nlx_pixel_put(img, start.x, start.y, COLOR_WHITE);
 		start.x += params.x_incr;
 		params.error_x -= params.diff_y;
 		if (params.error_x < 0)
@@ -92,7 +101,8 @@ static void	draw_high_slope(t_2d_point start,
 	i = -1;
 	while (++i <= params.starting_error_y)
 	{
-		nlx_pixel_put(img, start.x, start.y, COLOR_WHITE);
+		if (is_pixel_in_img(start, img->height, img->width))
+			nlx_pixel_put(img, start.x, start.y, COLOR_WHITE);
 		start.y += params.y_incr;
 		params.error_y -= params.diff_x;
 		if (params.error_y < 0)
@@ -155,4 +165,13 @@ t_nlx_line	*create_line(t_vec3d *p1, t_vec3d *p2)
 	if (line->start.y > line->end.y)
 		line->y_incr = -1;
 	return (line);
+}
+
+static bool	is_pixel_in_img(t_2d_point to_check, int height, int width)
+{
+	if (to_check.x < 0 || to_check.x >= width)
+		return (false);
+	if (to_check.y < 0 || to_check.y >= height)
+		return (false);
+	return (true);
 }
