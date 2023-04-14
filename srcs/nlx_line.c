@@ -24,8 +24,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-static bool			is_pixel_in_img(t_2d_point to_check, int height, int width);
-
 /**
  * @brief Draw a line on an image
  * @details The function will create a line from two points
@@ -41,8 +39,7 @@ static void	draw_straight_line(t_2d_point start, t_2d_point end, t_img *img)
 			return (draw_straight_line(end, start, img));
 		while (start.y <= end.y)
 		{
-			if (is_pixel_in_img(start, img->height, img->width))
-				nlx_pixel_put(img, start.x, start.y, COLOR_WHITE);
+			nlx_pixel_put(img, start.x, start.y, COLOR_WHITE);
 			start.y++;
 		}
 	}
@@ -52,8 +49,7 @@ static void	draw_straight_line(t_2d_point start, t_2d_point end, t_img *img)
 			return (draw_straight_line(end, start, img));
 		while (start.x <= end.x)
 		{
-			if (is_pixel_in_img(start, img->height, img->width))
-				nlx_pixel_put(img, start.x, start.y, COLOR_WHITE);
+			nlx_pixel_put(img, start.x, start.y, COLOR_WHITE);
 			start.x++;
 		}
 	}
@@ -74,8 +70,7 @@ static void	draw_low_slope(t_2d_point start,
 	i = -1;
 	while (++i <= params.starting_error_x)
 	{
-		if (is_pixel_in_img(start, img->height, img->width))
-			nlx_pixel_put(img, start.x, start.y, COLOR_WHITE);
+		nlx_pixel_put(img, start.x, start.y, COLOR_WHITE);
 		start.x += params.x_incr;
 		params.error_x -= params.diff_y;
 		if (params.error_x < 0)
@@ -101,8 +96,7 @@ static void	draw_high_slope(t_2d_point start,
 	i = -1;
 	while (++i <= params.starting_error_y)
 	{
-		if (is_pixel_in_img(start, img->height, img->width))
-			nlx_pixel_put(img, start.x, start.y, COLOR_WHITE);
+		nlx_pixel_put(img, start.x, start.y, COLOR_WHITE);
 		start.y += params.y_incr;
 		params.error_y -= params.diff_x;
 		if (params.error_y < 0)
@@ -124,6 +118,8 @@ static void	draw_high_slope(t_2d_point start,
  */
 void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
 {
+	if (clip(&to_draw->start.x, &to_draw->start.y, &to_draw->end.x, &to_draw->end.y, img) == false)
+		return ;
 	if (to_draw->start.x == to_draw->end.x
 		|| to_draw->start.y == to_draw->end.y)
 		return (draw_straight_line(to_draw->start, to_draw->end, img));
@@ -165,13 +161,4 @@ t_nlx_line	*create_line(t_vec3d *p1, t_vec3d *p2)
 	if (line->start.y > line->end.y)
 		line->y_incr = -1;
 	return (line);
-}
-
-static bool	is_pixel_in_img(t_2d_point to_check, int height, int width)
-{
-	if (to_check.x < 0 || to_check.x >= width)
-		return (false);
-	if (to_check.y < 0 || to_check.y >= height)
-		return (false);
-	return (true);
 }
