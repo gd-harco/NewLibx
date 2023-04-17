@@ -45,13 +45,13 @@ OBJS			=	${SRCS_LIST:%.c=${DIR_OBJS}%.o}
 
 # ---- Compilation ---- #
 
-CFLAGS			=	-Wall -Wextra -Werror -g3
+CFLAGS			=	-g3
 
 # ---- Commands ---- #
 
 RMF =	 		rm -f
 
-MKDIR = 		mkdir -p
+MKDIR = 		mkdir -p	
 
 # ********* RULES ******** #
 

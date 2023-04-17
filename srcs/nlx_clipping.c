@@ -3,30 +3,30 @@
 #include "nlx_img.h"
 #include "debug.h"
 
-static int compute_code(int x, int y, t_img *img);
+static int compute_code(t_2d_point point, t_img *img);
 
 //https://www.geeksforgeeks.org/line-clipping-set-1-cohen-sutherland-algorithm/
-bool	clip(int *x1, int *y1,
-			 int *x2, int *y2, t_img *img)
+bool	clip(t_nlx_line *to_check, t_img *img)
 {
 	// Compute region codes for P1, P2
-	int code1 = compute_code(*x1, *y1, img);
-	int code2 = compute_code(*x2, *y2, img);
+	int code_start = compute_code(to_check->start, img);
+	int code_end = compute_code(to_check->end, img);
 	int x_min = 0;
 	int x_max = img->width - 1;
 	int y_min = 0;
 	int y_max = img->height - 1;
+	int slope;
 
 	// Initialize line as outside the rectangular window
 	bool accept = false;
 
-	while (true) {
-		if ((code1 == 0) && (code2 == 0)) {
+	while (1) {
+		if ((code_start == INSIDE) && (code_end == INSIDE)) {
 			// If both endpoints lie within rectangle
 			accept = true;
 			break;
 		}
-		else if (code1 & code2) {
+		else if (code_start & code_end) {
 			// If both endpoints are outside rectangle,
 			// in same region
 			break;
@@ -34,58 +34,79 @@ bool	clip(int *x1, int *y1,
 		else {
 			// Some segment of line lies within the
 			// rectangle
-			int code_out;
-			double x, y;
+			int code_outside;
+			int x, y;
 
 			// At least one endpoint is outside the
 			// rectangle, pick it.
-			if (code1 != 0)
-				code_out = code1;
+			if (code_start != 0)
+                code_outside = code_start;
 			else
-				code_out = code2;
+                code_outside = code_end;
 
 			// Find intersection point;
 			// using formulas y = y1 + slope * (x - x1),
 			// x = x1 + (1 / slope) * (y - y1)
-			if (code_out & TOP) {
+			if (code_outside & TOP) {
+				debug_print("code_outside = %d\n", code_outside);
+				if (code_outside == code_start)
+					debug_print("point outside : start \ninitial values before clipping: x = %d, y = %d\n", to_check->start.x, to_check->start.y);
+				else
+					debug_print("point outside : end \ninitial values before clipping: x = %d, y = %d\n", to_check->end.x, to_check->end.y);
 				// point is above the clip rectangle
-				x = *x1 + (*x2 - *x1) * (y_max - *y1) / (*y2 - *y1);
+				x = to_check->start.x + (to_check->end.x - to_check->start.x) * (y_max - to_check->start.y) / (to_check->end.y - to_check->start.y);
 				y = y_max;
-				debug_print("x = %f, y = %f\n", x, y);
+				debug_print("value after clipping : x = %d, y = %d\n", x, y);
 			}
-			else if (code_out & BOTTOM) {
-				// point is below the rectangle
-				x = *x1 + (*x2 - *x1) * (y_min - *y1) / (*y2 - *y1);
+			else if (code_outside & BOTTOM) {
+				debug_print("code_outside = %d\n", code_outside);
+				if (code_outside == code_start)
+					debug_print("point outside : start \ninitial values before clipping: x = %d, y = %d\n", to_check->start.x, to_check->start.y);
+				else
+					debug_print("point outside : end \ninitial values before clipping: x = %d, y = %d\n", to_check->end.x, to_check->end.y);
+                // point is below the rectangle
+				x = to_check->start.x + (to_check->end.x - to_check->start.x) * (y_min - to_check->start.y) / (to_check->end.y - to_check->start.y);
 				y = y_min;
-				debug_print("x = %f, y = %f\n", x, y);
+				debug_print("value after clipping : x = %d, y = %d\n", x, y);
+
 			}
-			else if (code_out & RIGHT) {
+			else if (code_outside & RIGHT) {
+				debug_print("code_outside = %d\n", code_outside);
+				if (code_outside == code_start)
+					debug_print("point outside : start \ninitial values before clipping: x = %d, y = %d\n", to_check->start.x, to_check->start.y);
+				else
+					debug_print("point outside : end \ninitial values before clipping: x = %d, y = %d\n", to_check->end.x, to_check->end.y);
 				// point is to the right of rectangle
-				y = *y1 + (*y2 - *y1) * (x_max - *x1) / (*x2 - *x1);
+				y = to_check->start.y + (to_check->end.y - to_check->start.y) * (x_max - to_check->start.x) / (to_check->end.x - to_check->start.x);
 				x = x_max;
-				debug_print("x = %f, y = %f\n", x, y);
+				debug_print("value after clipping : x = %d, y = %d\n", x, y);
+
 			}
-			else if (code_out & LEFT) {
+			else if (code_outside & LEFT) {
+				debug_print("code_outside = %d\n", code_outside);
+				if (code_outside == code_start)
+					debug_print("point outside : start \ninitial values before clipping: x = %d, y = %d\n", to_check->start.x, to_check->start.y);
+				else
+					debug_print("point outside : end \ninitial values before clipping: x = %d, y = %d\n", to_check->end.x, to_check->end.y);
 				// point is to the left of rectangle
-				y = *y1 + (*y2 - *y1) * (x_min - *x1) / (*x2 - *x1);
+				y = to_check->start.y + (to_check->end.y - to_check->start.y) * (x_min - to_check->start.x) / (to_check->end.x - to_check->start.x);
 				x = x_min;
-				debug_print("x = %f, y = %f\n", x, y);
+				debug_print("value after clipping : x = %d, y = %d\n", x, y);
+
 			}
 
 			// Now intersection point x, y is found
 			// We replace point outside rectangle
 			// by intersection point
-			if (code_out == code1) {
-				*x1 = x;
-				*y1 = y;
-				code1 = compute_code(*x1, *y1, img);
-				debug_print("x1 = %d, y1 = %d\n", *x1, *y1);
+			if (code_outside == code_start) {
+				to_check->start.x = x;
+				to_check->start.y = y;
+                code_start = compute_code(to_check->start, img);
 			}
 			else {
-				*x2 = x;
-				*y2 = y;
-				code2 = compute_code(*x2, *y2, img);
-				debug_print("x2 = %d, y2 = %d\n", *x2, *y2);
+				to_check->end.x = x;
+				to_check->end.y = y;
+                code_end = compute_code(to_check->end, img);
 			}
 		}
 	}
@@ -93,7 +114,7 @@ bool	clip(int *x1, int *y1,
 }
 
 // Function to compute region code for a point(x, y)
-int compute_code(int x, int y, t_img *img)
+int compute_code(t_2d_point point, t_img *img)
 {
 	// initialized as being inside
 	int code = INSIDE;
@@ -102,13 +123,13 @@ int compute_code(int x, int y, t_img *img)
 	int	y_min = 0;
 	int	y_max = img->height - 1;
 
-	if (x < x_min) // to the left of rectangle
+	if (point.x < x_min) // to the left of rectangle
 		code |= LEFT;
-	else if (x > x_max) // to the right of rectangle
+	else if (point.x > x_max) // to the right of rectangle
 		code |= RIGHT;
-	if (y < y_min) // below the rectangle
+	if (point.y < y_min) // below the rectangle
 		code |= BOTTOM;
-	else if (y > y_max) // above the rectangle
+	else if (point.y > y_max) // above the rectangle
 		code |= TOP;
 
 	return code;

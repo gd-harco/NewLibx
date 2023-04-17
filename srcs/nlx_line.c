@@ -119,7 +119,7 @@ static void	draw_high_slope(t_2d_point start,
  */
 void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
 {
-	if (clip(&to_draw->start.x, &to_draw->start.y, &to_draw->end.x, &to_draw->end.y, img) == false)
+	if (clip(to_draw, img) == false)
 	{
 		debug_print("line is out of the image with start (%d, %d) and end (%d, %d)\n", to_draw->start.x, to_draw->start.y, to_draw->end.x, to_draw->end.y);
 		return ;
