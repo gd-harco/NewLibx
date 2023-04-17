@@ -119,27 +119,14 @@ static void	draw_high_slope(t_2d_point start,
  */
 void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
 {
-	if (clip(to_draw, img) == false)
-	{
-		debug_print("line is out of the image with start (%d, %d) and end (%d, %d)\n", to_draw->start.x, to_draw->start.y, to_draw->end.x, to_draw->end.y);
-		return ;
-	}
 	if (to_draw->start.x == to_draw->end.x
 		|| to_draw->start.y == to_draw->end.y)
-	{
-		debug_print("trying to draw line with start (%d, %d) and end (%d, %d)\n", to_draw->start.x, to_draw->start.y, to_draw->end.x, to_draw->end.y);
 		return (draw_straight_line(to_draw->start, to_draw->end, img));
-	}
 	if (to_draw->starting_error_x > to_draw->starting_error_y)
-	{
-		debug_print("trying to draw line with start (%d, %d) and end (%d, %d)\n", to_draw->start.x, to_draw->start.y, to_draw->end.x, to_draw->end.y);
 		draw_low_slope(to_draw->start, *to_draw, img);
-	}
 	else
-	{
-			debug_print("trying to draw line with start (%d, %d) and end (%d, %d)\n", to_draw->start.x, to_draw->start.y, to_draw->end.x, to_draw->end.y);
 		draw_high_slope(to_draw->start, *to_draw, img);
-	}(void)color;
+	(void)color;
 }
 
 /**
@@ -149,7 +136,7 @@ void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
  * @allocated_on Heap (must be freed)
  * @return a pointer to the line
  */
-t_nlx_line	*create_line(t_vec3d *p1, t_vec3d *p2)
+t_nlx_line *create_line(t_vec3d *p1, t_vec3d *p2, t_img *img)
 {
 	t_nlx_line	*line;
 
@@ -161,7 +148,8 @@ t_nlx_line	*create_line(t_vec3d *p1, t_vec3d *p2)
 	line->end.x = p2->x + 0.5f;
 	line->end.y = p2->y + 0.5f;
 	//TODO add clipping here before creating every other value in the struct
-	clip(line);
+	line->is_visible = true;
+	clip(line, img);
 	line->error_x = abs((int)(line->end.x - line->start.x + 0.5f));
 	line->error_y = abs((int)(line->end.y - line->start.y + 0.5f));
 	line->diff_x = 2 * line->error_x;
