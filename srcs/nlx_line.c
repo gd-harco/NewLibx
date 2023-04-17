@@ -21,9 +21,6 @@
 #include "nlx_line.h"
 #include "nlx_img.h"
 #include "nlx_color.h"
-# include "debug.h"
-#include <stdlib.h>
-#include <stdbool.h>
 
 /**
  * @brief Draw a line on an image
@@ -136,7 +133,7 @@ void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
  * @allocated_on Heap (must be freed)
  * @return a pointer to the line
  */
-t_nlx_line *create_line(t_vec3d *p1, t_vec3d *p2, t_img *img)
+t_nlx_line	*create_line(t_vec3d *p1, t_vec3d *p2, t_img *img)
 {
 	t_nlx_line	*line;
 
@@ -147,7 +144,6 @@ t_nlx_line *create_line(t_vec3d *p1, t_vec3d *p2, t_img *img)
 	line->start.y = p1->y + 0.5f;
 	line->end.x = p2->x + 0.5f;
 	line->end.y = p2->y + 0.5f;
-	//TODO add clipping here before creating every other value in the struct
 	line->is_visible = true;
 	clip(line, img);
 	line->error_x = abs((int)(line->end.x - line->start.x + 0.5f));
