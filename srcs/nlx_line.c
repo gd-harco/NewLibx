@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:18:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/12 20:14:01 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/17 15:52:26 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 #include "nlx_line.h"
 #include "nlx_img.h"
 #include "nlx_color.h"
-#include <stdlib.h>
-#include <stdbool.h>
 
 /**
  * @brief Draw a line on an image
@@ -94,7 +92,7 @@ static void	draw_high_slope(t_2d_point start,
 	int	i;
 
 	i = -1;
-	while (++i <= params.starting_error_y)
+	while (++i <= params.starting_error_y && start.y > 0)
 	{
 		nlx_pixel_put(img, start.x, start.y, COLOR_WHITE);
 		start.y += params.y_incr;
@@ -135,17 +133,19 @@ void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
  * @allocated_on Heap (must be freed)
  * @return a pointer to the line
  */
-t_nlx_line	*create_line(t_vec3d *p1, t_vec3d *p2)
+t_nlx_line	*create_line(t_vec3d *p1, t_vec3d *p2, t_img *img)
 {
 	t_nlx_line	*line;
 
 	line = malloc(sizeof(t_nlx_line));
 	if (!line)
 		return (NULL);
-	line->start.x = p1->x;
-	line->start.y = p1->y;
-	line->end.x = p2->x;
-	line->end.y = p2->y;
+	line->start.x = p1->x + 0.5f;
+	line->start.y = p1->y + 0.5f;
+	line->end.x = p2->x + 0.5f;
+	line->end.y = p2->y + 0.5f;
+	line->is_visible = true;
+	clip(line, img);
 	line->error_x = abs((int)(line->end.x - line->start.x + 0.5f));
 	line->error_y = abs((int)(line->end.y - line->start.y + 0.5f));
 	line->diff_x = 2 * line->error_x;

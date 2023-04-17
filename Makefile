@@ -42,7 +42,7 @@ OBJS			=	${SRCS_LIST:%.c=${DIR_OBJS}%.o}
 
 # ---- Compilation ---- #
 
-CFLAGS			=	-Wall -Wextra -Werror -g3
+CFLAGS			=	-Wall -Werror -Wextra -g3
 
 # ---- Commands ---- #
 
@@ -68,7 +68,7 @@ ${NAME}			:	${OBJS} ${HEADERS}
 ${OBJS}			:	| ${DIR_OBJS}
 
 ${DIR_OBJS}%.o: ${DIR_SRCS}%.c ${HEADERS} ${MLX_A}
-				cc ${CFLAGS} -I ${DIR_HEADERS} -c $< -o $@
+				c99 -DDEBUG=1 ${CFLAGS} -I ${DIR_HEADERS} -c $< -o $@
 
 ${DIR_OBJS}		:	 Makefile
 					${MKDIR} ${DIR_OBJS}
