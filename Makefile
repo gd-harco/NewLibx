@@ -26,8 +26,7 @@ HEADERS_LIST	=	nlx_clipping.h		\
 					nlx_line.h			\
 					nlx_mat.h			\
 					nlx_vec.h			\
-					nlx_win.h			\
-					debug.h
+					nlx_win.h
 
 SRCS_LIST		=	nlx_clipping.c		\
 					nlx_img.c			\
@@ -45,13 +44,13 @@ OBJS			=	${SRCS_LIST:%.c=${DIR_OBJS}%.o}
 
 # ---- Compilation ---- #
 
-CFLAGS			=	-g3
+CFLAGS			=	-Wall -Werror -Wextra -g3
 
 # ---- Commands ---- #
 
 RMF =	 		rm -f
 
-MKDIR = 		mkdir -p	
+MKDIR = 		mkdir -p
 
 # ********* RULES ******** #
 

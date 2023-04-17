@@ -1,10 +1,9 @@
-
 #include "nlx_clipping.h"
 #include "nlx_img.h"
-#include "debug.h"
 
 static int	compute_code(t_2d_point point, t_img *img);
-void		partial_clip(t_nlx_line *to_check, int code_start, int code_end, t_img *img);
+void		partial_clip(t_nlx_line *line,
+				int *c_start, int *c_end, t_img *img);
 
 //https://www.geeksforgeeks.org/line-clipping-set-1-cohen-sutherland-algorithm/
 void	clip(t_nlx_line *to_check, t_img *img)
@@ -26,52 +25,68 @@ void	clip(t_nlx_line *to_check, t_img *img)
 			return ;
 		}
 		else
-			partial_clip(to_check, code_start, code_end, img);
+			partial_clip(to_check, &code_start, &code_end, img);
 	}
 }
 
+int	clip_top_bottom(t_nlx_line *line, int code_outside, t_img *img, int *x)
+{
+	if (code_outside & TOP)
+	{
+		*x = line->start.x + (line->end.x - line->start.x) * ((img->height - 1)
+				- line->start.y) / (line->end.y - line->start.y);
+		return (img->height - 1);
+	}
+	else if (code_outside & BOTTOM)
+	{
+		*x = line->start.x + (line->end.x - line->start.x) * (0 - line->start.y)
+			/ (line->end.y - line->start.y);
+		return (0);
+	}
+}
 
-void	partial_clip(t_nlx_line *to_check, int code_start, int code_end, t_img *img)
+int	clip_left_right(t_nlx_line *line, int code_outside, t_img *img, int *x)
+{
+	if (code_outside & RIGHT)
+	{
+		*x = img->width - 1;
+		return (line->start.y + (line->end.y - line->start.y)
+			* ((img->width - 1) - line->start.x)
+			/ (line->end.x - line->start.x));
+	}
+	else if (code_outside & LEFT)
+	{
+		*x = 0;
+		return (line->start.y + (line->end.y - line->start.y)
+			* (0 - line->start.x) / (line->end.x - line->start.x));
+	}
+}
+
+void	partial_clip(t_nlx_line *line, int *c_start, int *c_end, t_img *img)
 {
 	int	code_outside;
 	int	x;
 	int	y;
 
-	if (code_start != 0)
-		code_outside = code_start;
+	if (*c_start != 0)
+		code_outside = *c_start;
 	else
-		code_outside = code_end;
-	if (code_outside & TOP)
+		code_outside = *c_end;
+	if (code_outside & TOP || code_outside & BOTTOM)
+		y = clip_top_bottom(line, code_outside, img, &x);
+	else
+		y = clip_left_right(line, code_outside, img, &x);
+	if (code_outside == *c_start)
 	{
-		x = to_check->start.x + (to_check->end.x - to_check->start.x) * ((img->height - 1) - to_check->start.y) / (to_check->end.y - to_check->start.y);
-		y = img->height - 1;
-	}
-	else if (code_outside & BOTTOM)
-	{
-		x = to_check->start.x + (to_check->end.x - to_check->start.x) * (0 - to_check->start.y) / (to_check->end.y - to_check->start.y);
-		y = 0;
-	}
-	else if (code_outside & RIGHT)
-	{
-		y = to_check->start.y + (to_check->end.y - to_check->start.y) * ((img->height - 1) - to_check->start.x) / (to_check->end.x - to_check->start.x);
-		x = img->height - 1;
-	}
-	else if (code_outside & LEFT)
-	{
-		y = to_check->start.y + (to_check->end.y - to_check->start.y) * (0 - to_check->start.x) / (to_check->end.x - to_check->start.x);
-		x = 0;
-	}
-	if (code_outside == code_start)
-	{
-		to_check->start.x = x;
-		to_check->start.y = y;
-		code_start = compute_code(to_check->start, img);
+		line->start.x = x;
+		line->start.y = y;
+		*c_start = compute_code(line->start, img);
 	}
 	else
 	{
-		to_check->end.x = x;
-		to_check->end.y = y;
-		code_end = compute_code(to_check->end, img);
+		line->end.x = x;
+		line->end.y = y;
+		*c_end = compute_code(line->end, img);
 	}
 }
 
@@ -93,6 +108,5 @@ int	compute_code(t_2d_point point, t_img *img)
 		code |= BOTTOM;
 	else if (point.y > y_max)
 		code |= TOP;
-
 	return (code);
 }

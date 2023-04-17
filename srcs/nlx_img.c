@@ -20,7 +20,6 @@
  */
 
 #include "nlx_img.h"
-#include "debug.h"
 /**
  * @brief create a new image and store it in
  * 			the t_img structure passed as a parameter
