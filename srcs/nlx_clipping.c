@@ -23,13 +23,12 @@ bool	clip(t_nlx_line *to_check, t_img *img)
 	while (1) {
 		if ((code_start == INSIDE) && (code_end == INSIDE)) {
 			// If both endpoints lie within rectangle
-			accept = true;
-			break;
+			return true;
 		}
 		else if (code_start & code_end) {
 			// If both endpoints are outside rectangle,
 			// in same region
-			break;
+			return (false);
 		}
 		else {
 			// Some segment of line lies within the
@@ -118,10 +117,10 @@ int compute_code(t_2d_point point, t_img *img)
 {
 	// initialized as being inside
 	int code = INSIDE;
-	int	x_min = 0;
-	int	x_max = img->width - 1;
-	int	y_min = 0;
-	int	y_max = img->height - 1;
+	const int	x_min = 0;
+	const int	x_max = img->width - 1;
+	const int	y_min = 0;
+	const int	y_max = img->height - 1;
 
 	if (point.x < x_min) // to the left of rectangle
 		code |= LEFT;

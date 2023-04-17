@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:18:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/15 13:55:38 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/17 15:52:26 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,16 +126,17 @@ void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
 	}
 	if (to_draw->start.x == to_draw->end.x
 		|| to_draw->start.y == to_draw->end.y)
-		{
-			debug_print("trying to draw line with start (%d, %d) and end (%d, %d)\n", to_draw->start.x, to_draw->start.y, to_draw->end.x, to_draw->end.y);
-			return (draw_straight_line(to_draw->start, to_draw->end, img));
-		}
+	{
+		debug_print("trying to draw line with start (%d, %d) and end (%d, %d)\n", to_draw->start.x, to_draw->start.y, to_draw->end.x, to_draw->end.y);
+		return (draw_straight_line(to_draw->start, to_draw->end, img));
+	}
 	if (to_draw->starting_error_x > to_draw->starting_error_y)
 	{
 		debug_print("trying to draw line with start (%d, %d) and end (%d, %d)\n", to_draw->start.x, to_draw->start.y, to_draw->end.x, to_draw->end.y);
 		draw_low_slope(to_draw->start, *to_draw, img);
 	}
-else{
+	else
+	{
 			debug_print("trying to draw line with start (%d, %d) and end (%d, %d)\n", to_draw->start.x, to_draw->start.y, to_draw->end.x, to_draw->end.y);
 		draw_high_slope(to_draw->start, *to_draw, img);
 	}(void)color;
@@ -155,10 +156,12 @@ t_nlx_line	*create_line(t_vec3d *p1, t_vec3d *p2)
 	line = malloc(sizeof(t_nlx_line));
 	if (!line)
 		return (NULL);
-	line->start.x = p1->x;
-	line->start.y = p1->y;
-	line->end.x = p2->x;
-	line->end.y = p2->y;
+	line->start.x = p1->x + 0.5f;
+	line->start.y = p1->y + 0.5f;
+	line->end.x = p2->x + 0.5f;
+	line->end.y = p2->y + 0.5f;
+	//TODO add clipping here before creating every other value in the struct
+	clip(line);
 	line->error_x = abs((int)(line->end.x - line->start.x + 0.5f));
 	line->error_y = abs((int)(line->end.y - line->start.y + 0.5f));
 	line->diff_x = 2 * line->error_x;
