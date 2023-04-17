@@ -80,4 +80,5 @@ typedef struct s_nlx_line
 t_nlx_line *create_line(t_vec3d *p1, t_vec3d *p2, t_img *img);
 void		nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color);
 void		clip(t_nlx_line *to_check, t_img *img);
+
 #endif

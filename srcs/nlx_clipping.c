@@ -1,5 +1,5 @@
-#include "nlx_clipping.h"
 #include "nlx_img.h"
+#include "nlx_line.h"
 
 static int	compute_code(t_2d_point point, t_img *img);
 void		partial_clip(t_nlx_line *line,
@@ -37,7 +37,7 @@ int	clip_top_bottom(t_nlx_line *line, int code_outside, t_img *img, int *x)
 				- line->start.y) / (line->end.y - line->start.y);
 		return (img->height - 1);
 	}
-	else if (code_outside & BOTTOM)
+	else
 	{
 		*x = line->start.x + (line->end.x - line->start.x) * (0 - line->start.y)
 			/ (line->end.y - line->start.y);
@@ -54,7 +54,7 @@ int	clip_left_right(t_nlx_line *line, int code_outside, t_img *img, int *x)
 			* ((img->width - 1) - line->start.x)
 			/ (line->end.x - line->start.x));
 	}
-	else if (code_outside & LEFT)
+	else
 	{
 		*x = 0;
 		return (line->start.y + (line->end.y - line->start.y)

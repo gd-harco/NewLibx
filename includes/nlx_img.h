@@ -24,6 +24,12 @@
 # define NLX_IMG_H
 # include "../minilibx_linux/mlx.h"
 
+# define INSIDE 0
+# define LEFT 1
+# define RIGHT 2
+# define BOTTOM 4
+# define TOP 8
+
 //-----------------STRUCTURES-----------------//
 
 /**

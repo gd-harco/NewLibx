@@ -27,7 +27,8 @@ HEADERS_LIST	=	nlx_color.h			\
 					nlx_vec.h			\
 					nlx_win.h
 
-SRCS_LIST		=	nlx_img.c			\
+SRCS_LIST		=	nlx_clipping.c		\
+					nlx_img.c			\
 					nlx_line.c			\
 					nlx_mat.c			\
 					nlx_mat_multiply.c	\
