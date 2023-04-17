@@ -26,7 +26,8 @@ HEADERS_LIST	=	nlx_clipping.h		\
 					nlx_line.h			\
 					nlx_mat.h			\
 					nlx_vec.h			\
-					nlx_win.h
+					nlx_win.h			\
+					debug.h
 
 SRCS_LIST		=	nlx_clipping.c		\
 					nlx_img.c			\
@@ -70,7 +71,7 @@ ${NAME}			:	${OBJS} ${HEADERS}
 ${OBJS}			:	| ${DIR_OBJS}
 
 ${DIR_OBJS}%.o: ${DIR_SRCS}%.c ${HEADERS} ${MLX_A}
-				cc ${CFLAGS} -I ${DIR_HEADERS} -c $< -o $@
+				c99 -DDEBUG=1 ${CFLAGS} -I ${DIR_HEADERS} -c $< -o $@
 
 ${DIR_OBJS}		:	 Makefile
 					${MKDIR} ${DIR_OBJS}

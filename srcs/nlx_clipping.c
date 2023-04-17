@@ -1,6 +1,7 @@
 
 #include "nlx_clipping.h"
 #include "nlx_img.h"
+#include "debug.h"
 
 static int compute_code(int x, int y, t_img *img);
 
@@ -50,21 +51,25 @@ bool	clip(int *x1, int *y1,
 				// point is above the clip rectangle
 				x = *x1 + (*x2 - *x1) * (y_max - *y1) / (*y2 - *y1);
 				y = y_max;
+				debug_print("x = %f, y = %f\n", x, y);
 			}
 			else if (code_out & BOTTOM) {
 				// point is below the rectangle
 				x = *x1 + (*x2 - *x1) * (y_min - *y1) / (*y2 - *y1);
 				y = y_min;
+				debug_print("x = %f, y = %f\n", x, y);
 			}
 			else if (code_out & RIGHT) {
 				// point is to the right of rectangle
 				y = *y1 + (*y2 - *y1) * (x_max - *x1) / (*x2 - *x1);
 				x = x_max;
+				debug_print("x = %f, y = %f\n", x, y);
 			}
 			else if (code_out & LEFT) {
 				// point is to the left of rectangle
 				y = *y1 + (*y2 - *y1) * (x_min - *x1) / (*x2 - *x1);
 				x = x_min;
+				debug_print("x = %f, y = %f\n", x, y);
 			}
 
 			// Now intersection point x, y is found
@@ -74,11 +79,13 @@ bool	clip(int *x1, int *y1,
 				*x1 = x;
 				*y1 = y;
 				code1 = compute_code(*x1, *y1, img);
+				debug_print("x1 = %d, y1 = %d\n", *x1, *y1);
 			}
 			else {
 				*x2 = x;
 				*y2 = y;
 				code2 = compute_code(*x2, *y2, img);
+				debug_print("x2 = %d, y2 = %d\n", *x2, *y2);
 			}
 		}
 	}

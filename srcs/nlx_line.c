@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:18:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/12 20:14:01 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/15 13:55:38 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include "nlx_line.h"
 #include "nlx_img.h"
 #include "nlx_color.h"
+# include "debug.h"
 #include <stdlib.h>
 #include <stdbool.h>
 
@@ -94,7 +95,7 @@ static void	draw_high_slope(t_2d_point start,
 	int	i;
 
 	i = -1;
-	while (++i <= params.starting_error_y)
+	while (++i <= params.starting_error_y && start.y > 0)
 	{
 		nlx_pixel_put(img, start.x, start.y, COLOR_WHITE);
 		start.y += params.y_incr;
@@ -119,15 +120,25 @@ static void	draw_high_slope(t_2d_point start,
 void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
 {
 	if (clip(&to_draw->start.x, &to_draw->start.y, &to_draw->end.x, &to_draw->end.y, img) == false)
+	{
+		debug_print("line is out of the image with start (%d, %d) and end (%d, %d)\n", to_draw->start.x, to_draw->start.y, to_draw->end.x, to_draw->end.y);
 		return ;
+	}
 	if (to_draw->start.x == to_draw->end.x
 		|| to_draw->start.y == to_draw->end.y)
-		return (draw_straight_line(to_draw->start, to_draw->end, img));
+		{
+			debug_print("trying to draw line with start (%d, %d) and end (%d, %d)\n", to_draw->start.x, to_draw->start.y, to_draw->end.x, to_draw->end.y);
+			return (draw_straight_line(to_draw->start, to_draw->end, img));
+		}
 	if (to_draw->starting_error_x > to_draw->starting_error_y)
+	{
+		debug_print("trying to draw line with start (%d, %d) and end (%d, %d)\n", to_draw->start.x, to_draw->start.y, to_draw->end.x, to_draw->end.y);
 		draw_low_slope(to_draw->start, *to_draw, img);
-	else
+	}
+else{
+			debug_print("trying to draw line with start (%d, %d) and end (%d, %d)\n", to_draw->start.x, to_draw->start.y, to_draw->end.x, to_draw->end.y);
 		draw_high_slope(to_draw->start, *to_draw, img);
-	(void)color;
+	}(void)color;
 }
 
 /**

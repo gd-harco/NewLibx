@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 11:32:49 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/03 21:07:53 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/15 12:08:42 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  */
 
 #include "nlx_img.h"
-
+#include "debug.h"
 /**
  * @brief create a new image and store it in
  * 			the t_img structure passed as a parameter
@@ -54,6 +54,7 @@ void	nlx_pixel_put(t_img	*img, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	dst = img
+	->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
