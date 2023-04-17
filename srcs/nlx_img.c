@@ -20,7 +20,9 @@
  */
 
 #include "nlx_img.h"
+#include <stdbool.h>
 
+static bool	pixel_on_img(int x, int y, t_img img);
 /**
  * @brief create a new image and store it in
  * 			the t_img structure passed as a parameter
@@ -54,6 +56,15 @@ void	nlx_pixel_put(t_img	*img, int x, int y, int color)
 {
 	char	*dst;
 
+	if (!pixel_on_img(x, y, *img))
+		return ;
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+}
+
+bool	pixel_on_img(int x, int y, t_img img)
+{
+	if (x >= 0 && x < img.width && y >= 0 && y < img.height)
+		return (true);
+	return (false);
 }
