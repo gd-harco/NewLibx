@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:15:08 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/13 13:47:09 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/18 17:46:22 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define NLX_MAT_H
 
 # include "nlx_vec.h"
+# include "nlx_win.h"
 # include <stdbool.h>
 # include <math.h>
 
@@ -52,6 +53,12 @@ typedef struct s_matrix
  * @param aspect_ratio The aspect ratio of the screen.
  * Determined by the function that creates the matrix
  */
+
+enum e_proj
+{
+	ISO,
+	PERSP
+};
 
 typedef struct s_proj_info
 {
@@ -84,6 +91,7 @@ typedef struct s_rot_info
 typedef struct s_world_i {
 	bool			key_is_pressed;
 	int				key_pressed;
+	e_proj			proj_type;
 	t_matrix		*world_m;
 	t_rot_info		*rot;
 	t_trans_info	*trans;
@@ -96,6 +104,7 @@ t_matrix	*get_x_rotation_matrix(float angle);
 t_matrix	*get_y_rotation_matrix(float angle);
 t_matrix	*get_z_rotation_matrix(float angle);
 t_matrix	*get_projection_matrix(t_proj_info *data);
+t_matrix	*get_iso_projection_matrix(t_proj_info *data, t_win *win);
 t_matrix	*get_translation_matrix(t_trans_info *trans);
 t_matrix	multiply_matrix_matrix(t_matrix *m1, t_matrix *m2);
 void		multiply_vector_matrix(
