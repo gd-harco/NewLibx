@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:03:31 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/09 16:45:52 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/18 10:01:14 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #ifndef NLX_VEC_H
 # define NLX_VEC_H
 # include <stdlib.h>
+# include <stdbool.h>
 
 //-----------------STRUCTURES-----------------//
 
@@ -39,6 +40,7 @@ typedef struct s_vec3d
 	float	y;
 	float	z;
 	float	w;
+	bool	is_behind_camera;
 }				t_vec3d;
 
 #endif
