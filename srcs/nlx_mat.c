@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:54:50 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/18 17:50:25 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/18 17:58:58 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_matrix	*create_identity_matrix(void)
  * @allocated_on Heap (must be freed)
  * @return t_matrix the projection matrix.
  */
-t_matrix	*get_projection_matrix(t_proj_info *data)
+t_matrix	*get_persp_matrix(t_proj_info *data)
 {
 	t_matrix	*proj_matrix;
 	int			row;
@@ -90,7 +90,7 @@ t_matrix	*get_projection_matrix(t_proj_info *data)
 	return (proj_matrix);
 }
 
-t_matrix	*get_iso_projection_matrix(t_proj_info *data, t_win *win)
+t_matrix	*get_iso_matrix(t_proj_info *data, t_win *win)
 {
 	t_matrix	*proj_matrix;
 

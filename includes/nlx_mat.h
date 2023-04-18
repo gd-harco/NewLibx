@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:15:08 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/18 17:46:22 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/18 17:58:31 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ enum e_proj
 
 typedef struct s_proj_info
 {
-	t_matrix	*m;
+	t_matrix	*iso_m;
+	t_matrix	*persp_m;
+	t_matrix	*current_m;
 	float		z_near;
 	float		z_far;
 	float		fov;
@@ -103,8 +105,8 @@ t_matrix	*create_identity_matrix(void);
 t_matrix	*get_x_rotation_matrix(float angle);
 t_matrix	*get_y_rotation_matrix(float angle);
 t_matrix	*get_z_rotation_matrix(float angle);
-t_matrix	*get_projection_matrix(t_proj_info *data);
-t_matrix	*get_iso_projection_matrix(t_proj_info *data, t_win *win);
+t_matrix	*get_persp_matrix(t_proj_info *data);
+t_matrix	*get_iso_matrix(t_proj_info *data, t_win *win);
 t_matrix	*get_translation_matrix(t_trans_info *trans);
 t_matrix	multiply_matrix_matrix(t_matrix *m1, t_matrix *m2);
 void		multiply_vector_matrix(
