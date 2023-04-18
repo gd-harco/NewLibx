@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:15:08 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/18 17:58:31 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/18 18:03:56 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef struct s_rot_info
 typedef struct s_world_i {
 	bool			key_is_pressed;
 	int				key_pressed;
-	e_proj			proj_type;
+	enum e_proj		proj_type;
 	t_matrix		*world_m;
 	t_rot_info		*rot;
 	t_trans_info	*trans;
