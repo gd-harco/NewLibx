@@ -90,18 +90,15 @@ t_matrix	*get_persp_matrix(t_proj_info *data)
 	return (proj_matrix);
 }
 
-t_matrix	*get_iso_matrix(const t_proj_info *data, const t_win *win)
+t_matrix	*get_iso_matrix(float iso_factor)
 {
 	t_matrix	*iso_matrix;
 
 	iso_matrix = create_identity_matrix();
 	if (!iso_matrix)
 		return (NULL);
-	iso_matrix->m[0][0] = 2.0f / (win->width);
-	iso_matrix->m[1][1] = 2.0f / (win->height);
-	iso_matrix->m[2][2] = 2.0f / (data->z_far - data->z_near);
-	iso_matrix->m[0][3] = -((win->width) / (win->width - 1.0f));
-	iso_matrix->m[1][3] = -((win->height) / (win->height - 1.0f));
-	iso_matrix->m[2][3] = - (data->z_near) / (data->z_far - data->z_near);
+	iso_matrix->m[0][0] = iso_factor;
+	iso_matrix->m[1][1] = iso_factor;
+	iso_matrix->m[2][2] = iso_factor;
 	return (iso_matrix);
 }

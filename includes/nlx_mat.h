@@ -106,7 +106,7 @@ t_matrix	*get_x_rotation_matrix(float angle);
 t_matrix	*get_y_rotation_matrix(float angle);
 t_matrix	*get_z_rotation_matrix(float angle);
 t_matrix	*get_persp_matrix(t_proj_info *data);
-t_matrix	*get_iso_matrix(const t_proj_info *data, const t_win *win);
+t_matrix	*get_iso_matrix(float iso_factor);
 t_matrix	*get_translation_matrix(t_trans_info *trans);
 t_matrix	multiply_matrix_matrix(t_matrix *m1, t_matrix *m2);
 void		multiply_vector_matrix(
