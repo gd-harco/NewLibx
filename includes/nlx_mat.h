@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:15:08 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/19 17:01:00 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/22 16:54:54 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
  * @ingroup matrix
  * @author gd-harco
  * @date 2023/03/26
+ * @version 1.0
  */
 #ifndef NLX_MAT_H
 # define NLX_MAT_H
@@ -35,24 +36,14 @@
  * @brief A 4x4 matrix of float to use for 3D normalisation
  *
  * @ingroup matrix
+ * @details This structure is used to represent a 4x4 matrix of float
+ * @param m The matrix itself
  */
 typedef struct s_matrix
 {
 	float	m[4][4];
 }				t_matrix;
 
-/**
- * @struct s_proj_m
- * @brief Structure containing the data needed
- * to create a projection matrix, and the matrix itself
- * @ingroup matrix
- * @param m The projection matrix created with the data
- * @param z_near The near clipping plane. Must be provided
- * @param z_far The far clipping plane. Must be provided
- * @param fov The field of view. Must be provided
- * @param aspect_ratio The aspect ratio of the screen.
- * Determined by the function that creates the matrix
- */
 
 enum e_proj
 {
@@ -60,6 +51,22 @@ enum e_proj
 	PERSP
 };
 
+/**
+ * @struct s_proj_info
+ *
+ * @brief Structure containing the data needed
+ * to create a projection matrix, and the matrix itself
+
+ * @param iso_m The matrix used for the isometric projection
+ * @param persp_m The matrix used for the perspective projection
+ * @param current_m The matrix currently used for the projection
+ * @param z_near The near clipping plane. Must be provided
+ * @param z_far The far clipping plane. Must be provided
+ * @param fov The field of view. Must be provided
+ * @param aspect_ratio The aspect ratio of the screen.
+ * Determined by the function that creates the matrix
+ * @param fov_rad The field of view in radians
+ */
 typedef struct s_proj_info
 {
 	t_matrix	*iso_m;
@@ -72,6 +79,14 @@ typedef struct s_proj_info
 	float		fov_rad;
 }				t_proj_info;
 
+/**
+ * @brief Structure containing all data about the translation of the world
+ *
+ * @param translate_x The translation value on the x axis
+ * @param translate_y The translation value on the y axis
+ * @param translate_z The translation value on the z axis
+ * @param m The translation matrix
+ */
 typedef struct s_trans_info
 {
 	float		translate_x;
@@ -80,6 +95,16 @@ typedef struct s_trans_info
 	t_matrix	*m;
 }				t_trans_info;
 
+/**
+ * @brief Structure containing all data about the rotation of the world
+ *
+ * @param rot_x The rotation value on the x axis
+ * @param rot_y The rotation value on the y axis
+ * @param rot_z The rotation value on the z axis
+ * @param x_rot_m The rotation matrix on the x axis
+ * @param y_rot_m The rotation matrix on the y axis
+ * @param z_rot_m The rotation matrix on the z axis
+ */
 typedef struct s_rot_info
 {
 	float		rot_x;
@@ -90,6 +115,17 @@ typedef struct s_rot_info
 	t_matrix	*z_rot_m;
 }				t_rot_info;
 
+/**
+ * @brief Structure containing all data about the world
+ *
+ * @param key_is_pressed Boolean to know if a key is pressed
+ * @param key_pressed The key that is pressed
+ * @param proj_type The projection type currently used
+ * @param world_m The world matrix
+ * @param rot The rotation info of the world
+ * @param trans The translation info of the world
+ * @param proj The projection info of the world
+ */
 typedef struct s_world_i {
 	bool			key_is_pressed;
 	int				key_pressed;
@@ -101,6 +137,7 @@ typedef struct s_world_i {
 }			t_world_i;
 
 //-----------------FUNCTIONS-----------------//
+
 t_matrix	*create_identity_matrix(void);
 t_matrix	*get_x_rotation_matrix(float angle);
 t_matrix	*get_y_rotation_matrix(float angle);

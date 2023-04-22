@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:03:31 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/18 10:01:14 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/22 16:55:26 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@
  * @param x x coordinate of the vector
  * @param y y coordinate of the vector
  * @param z z coordinate of the vector
+ * @param initial_z initial z coordinate of the vector
+ * @param w w coordinate of the vector, used to set the next parameters
+ * @param is_behind_camera boolean to know if the vector is behind the camera
  */
 typedef struct s_vec3d
 {

@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:41:25 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/18 17:47:13 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/22 16:55:43 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
  * @struct s_win
  * @brief Structure to store a window and its properties
  * @param mlx The mlx pointer. Automaticly generated
+ * @param win_ptr The window pointer. Automaticly generated
+ * @param width The width of the window, in pixels. Must be specified
+ * @param height The height of the window, in pixels. Must be specified
  */
 typedef struct s_win
 {

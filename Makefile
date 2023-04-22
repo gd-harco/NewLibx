@@ -70,7 +70,7 @@ ${NAME}			:	${OBJS} ${HEADERS}
 ${OBJS}			:	| ${DIR_OBJS}
 
 ${DIR_OBJS}%.o: ${DIR_SRCS}%.c ${HEADERS} ${MLX_A}
-				c99 -DDEBUG=1 ${CFLAGS} -I ${DIR_HEADERS} -c $< -o $@
+				cc ${CFLAGS} -I ${DIR_HEADERS} -c $< -o $@
 
 ${DIR_OBJS}		:	 Makefile
 					${MKDIR} ${DIR_OBJS}

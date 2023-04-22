@@ -19,6 +19,7 @@
  * @ingroup draw
  * @author gd-harco
  * @date 2023/03/23
+ * @version 1.0
  */
 
 #ifndef NLX_LINE_H
@@ -44,9 +45,10 @@ typedef struct s_2d_point
 }		t_2d_point;
 
 /**
- * @brief Structure representing a line
+ * @brief Structure containg all info for a line
+ *
  * @ingroup line
- * @details This structure is used to represent a line
+ *
  * @param start the starting point of the line
  * @param end the ending point of the line
  * @param error_x the error on the x axis
@@ -59,6 +61,7 @@ typedef struct s_2d_point
  * @param starting_error_y the starting error on the y axis
  * @param x_incr the incrementation of the x coordinate
  * @param y_incr the incrementation of the y coordinate
+ * @param is_visible a boolean indicating if the line is visible
  */
 typedef struct s_nlx_line
 {
