@@ -43,7 +43,7 @@ OBJS			=	${SRCS_LIST:%.c=${DIR_OBJS}%.o}
 
 # ---- Compilation ---- #
 
-CFLAGS			=	-Wall -Werror -Wextra -g3 -fsanitize=address
+CFLAGS			=	-Wall -Werror -Wextra -g3
 
 # ---- Commands ---- #
 

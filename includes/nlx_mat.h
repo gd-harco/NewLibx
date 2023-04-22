@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:15:08 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/18 18:03:56 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/19 17:01:00 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ t_matrix	*get_x_rotation_matrix(float angle);
 t_matrix	*get_y_rotation_matrix(float angle);
 t_matrix	*get_z_rotation_matrix(float angle);
 t_matrix	*get_persp_matrix(t_proj_info *data);
-t_matrix	*get_iso_matrix(t_proj_info *data, t_win *win);
+t_matrix	*get_iso_matrix(const t_proj_info *data, const t_win *win);
 t_matrix	*get_translation_matrix(t_trans_info *trans);
 t_matrix	multiply_matrix_matrix(t_matrix *m1, t_matrix *m2);
 void		multiply_vector_matrix(

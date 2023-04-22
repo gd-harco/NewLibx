@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:54:50 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/18 17:58:58 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/19 16:58:46 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,18 +90,18 @@ t_matrix	*get_persp_matrix(t_proj_info *data)
 	return (proj_matrix);
 }
 
-t_matrix	*get_iso_matrix(t_proj_info *data, t_win *win)
+t_matrix	*get_iso_matrix(const t_proj_info *data, const t_win *win)
 {
-	t_matrix	*proj_matrix;
+	t_matrix	*iso_matrix;
 
-	proj_matrix = create_identity_matrix();
-	if (!proj_matrix)
+	iso_matrix = create_identity_matrix();
+	if (!iso_matrix)
 		return (NULL);
-	proj_matrix->m[0][0] = win->width / 2;
-	proj_matrix->m[0][3] = proj_matrix->m[0][0];
-	proj_matrix->m[1][1] = -win->height / 2;
-	proj_matrix->m[1][3] = -proj_matrix->m[1][1];
-	proj_matrix->m[2][2] = (data->z_far - data->z_near) / -2;
-	proj_matrix->m[2][3] = (data->z_far + data->z_near) / 2;
-	return (proj_matrix);
+	iso_matrix->m[0][0] = 2.0f / (win->width);
+	iso_matrix->m[1][1] = 2.0f / (win->height);
+	iso_matrix->m[2][2] = 2.0f / (data->z_far - data->z_near);
+	iso_matrix->m[0][3] = -((win->width) / (win->width - 1.0f));
+	iso_matrix->m[1][3] = -((win->height) / (win->height - 1.0f));
+	iso_matrix->m[2][3] = - (data->z_near) / (data->z_far - data->z_near);
+	return (iso_matrix);
 }
