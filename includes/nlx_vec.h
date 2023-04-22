@@ -39,6 +39,7 @@ typedef struct s_vec3d
 	float	x;
 	float	y;
 	float	z;
+	float	initial_z;
 	float	w;
 	bool	is_behind_camera;
 }				t_vec3d;
