@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:54:50 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/19 16:58:46 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/22 16:44:26 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
  *
  * @author gd-harco
  * @date 2023-04-03
+ * @version 1.0
  */
 #include "nlx_mat.h"
 #include "nlx_win.h"
@@ -90,6 +91,15 @@ t_matrix	*get_persp_matrix(t_proj_info *data)
 	return (proj_matrix);
 }
 
+/**
+ * @brief Get the iso matrix object
+ *
+ * @details this function returns an iso scale matrix \n
+ * based on the information passed in parameter.
+ * @param iso_factor the scale factor of the iso matrix
+ * @allocated_on Heap (must be freed)
+ * @return t_matrix the iso_scale matrix
+ */
 t_matrix	*get_iso_matrix(float iso_factor)
 {
 	t_matrix	*iso_matrix;

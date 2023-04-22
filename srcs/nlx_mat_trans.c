@@ -6,10 +6,19 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 16:05:07 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/11 19:24:52 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/22 16:42:40 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file nlx_mat_trans.c
+ *
+ * @brief file containing every function related to translation matrix in nlx
+ *
+ * @author gd-harco
+ * @date 2023-04-22
+ * @version 1.0
+ */
 #include "nlx_mat.h"
 
 /**

@@ -6,12 +6,28 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 16:22:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/22 16:23:12 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/22 16:41:14 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file nlx_line_util.c
+ *
+ * @brief supplementary file containing every function related to lines in nlx
+ *
+ * @author gd-harco
+ * @date 2023-04-03
+ * @version 1.0
+ */
 #include "nlx_line.h"
 
+/**
+ * @brief Fill the line infos
+ * 
+ * @details This function will fill the line infos
+ * @param line the line to fill
+ * @return nothing
+ */
 void	fill_line_infos(t_nlx_line *line)
 {
 	line->error_x = abs((int)(line->end.x - line->start.x + 0.5f));

@@ -6,10 +6,19 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 16:19:43 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/22 16:19:44 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/22 16:42:53 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file nlx_mat_world.c
+ *
+ * @brief file containing every function related to world matrix in nlx
+ *
+ * @author gd-harco
+ * @date 2023-04-22
+ * @version 1.0
+ */
 #include "nlx_mat.h"
 
 /**

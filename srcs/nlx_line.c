@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:18:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/22 16:22:37 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/22 16:40:21 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,19 @@
  *
  * @author gd-harco
  * @date 2023-04-03
+ * @version 1.0
  */
 #include "nlx_line.h"
 #include "nlx_img.h"
 #include "nlx_color.h"
 
 /**
- * @brief Draw a line on an image
- * @details The function will create a line from two points
+ * @brief Draw a straight line on an image
+ * @details The function check if the line is vertical or horizontal and draw it.
  * @param start the starting point of the line
  * @param params the parameters of the line
  * @param img the image on which the line will be drawn
+ * @return nothing
  */
 static void	draw_straight_line(t_2d_point start, t_2d_point end, t_img *img)
 {
@@ -55,7 +57,8 @@ static void	draw_straight_line(t_2d_point start, t_2d_point end, t_img *img)
 
 /**
  * @brief Draw a line on an image
- * @details The function will create a line from two points
+ * @details The function will create a line from two points in a slow slope
+ * using Bresenham's algorithm
  * @param start the starting point of the line
  * @param params the parameters of the line
  * @param img the image on which the line will be drawn
@@ -81,7 +84,8 @@ static void	draw_low_slope(t_2d_point start,
 
 /**
  * @brief Draw a line on an image
- * @details The function will create a line from two points
+ * @details The function will create a line from two points in a high slope
+ * using Bresenham's algorithm
  * @param start the starting point of the line
  * @param params the parameters of the line
  * @param img the image on which the line will be drawn

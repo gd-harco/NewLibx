@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 16:00:50 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/09 16:57:33 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/22 16:41:35 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
  * world matrix to get the screen coordinates of the points
  * @author gd-harco
  * @date 2023-04-08
+ * @version 1.0
  */
 
 #include "nlx_mat.h"

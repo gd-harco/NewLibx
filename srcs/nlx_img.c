@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 11:32:49 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/17 15:08:59 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/22 16:29:46 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
  * @author gd-harco
  * @date 2023/03/23
+ * @version 1.0
  */
 
 #include "nlx_img.h"
