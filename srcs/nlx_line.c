@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:18:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/19 13:08:16 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/22 16:22:37 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,17 +149,6 @@ t_nlx_line	*create_line(t_vec3d *p1, t_vec3d *p2, t_img *img)
 		line->is_visible = false;
 	else
 		clip(line, img);
-	line->error_x = abs((int)(line->end.x - line->start.x + 0.5f));
-	line->error_y = abs((int)(line->end.y - line->start.y + 0.5f));
-	line->diff_x = 2 * line->error_x;
-	line->diff_y = 2 * line->error_y;
-	line->starting_error_x = line->error_x;
-	line->starting_error_y = line->error_y;
-	line->x_incr = 1;
-	if (line->start.x > line->end.x)
-		line->x_incr = -1;
-	line->y_incr = 1;
-	if (line->start.y > line->end.y)
-		line->y_incr = -1;
+	fill_line_infos(line);
 	return (line);
 }

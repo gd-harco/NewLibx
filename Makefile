@@ -30,6 +30,7 @@ HEADERS_LIST	=	nlx_color.h			\
 SRCS_LIST		=	nlx_clipping.c		\
 					nlx_img.c			\
 					nlx_line.c			\
+					nlx_line_util.c			\
 					nlx_mat.c			\
 					nlx_mat_multiply.c	\
 					nlx_mat_rot.c		\
