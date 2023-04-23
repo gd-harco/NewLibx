@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:15:08 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/22 16:54:54 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/23 16:54:07 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct s_matrix
 {
 	float	m[4][4];
 }				t_matrix;
-
 
 enum e_proj
 {
