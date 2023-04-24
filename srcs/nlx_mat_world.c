@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 16:19:43 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/22 16:42:53 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/24 12:00:00 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ t_matrix	*get_world_matrix(t_world_i *world)
 	t_matrix	*world_matrix;
 
 	world_matrix = malloc(sizeof(t_matrix));
-	if (!world_matrix)
-		return (NULL);
+	if (!world_matrix || !world->trans->m
+		|| !world->rot->x_rot_m || !world->rot->y_rot_m || !world->rot->z_rot_m)
+		return (free(world_matrix), NULL);
 	*world_matrix = multiply_matrix_matrix
 		(world->rot->z_rot_m, world->rot->x_rot_m);
 	*world_matrix = multiply_matrix_matrix
