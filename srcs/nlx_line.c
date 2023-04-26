@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:18:54 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/22 16:40:21 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/26 23:43:39 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,13 @@ void	nlx_draw_line(t_img *img, t_nlx_line *to_draw, int color)
 		draw_high_slope(to_draw->start, *to_draw, img);
 	(void)color;
 }
+
+void	nlx_draw_points(t_img *img, t_nlx_line *to_draw, int color)
+{
+	nlx_pixel_put(img, to_draw->start.x, to_draw->start.y, color);
+	nlx_pixel_put(img, to_draw->end.x, to_draw->end.y, color);
+}
+
 
 /**
  * @brief create a line
