@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:15:08 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/23 16:54:07 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/26 23:03:16 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,29 @@ typedef struct s_matrix
 	float	m[4][4];
 }				t_matrix;
 
+
+/**
+ * @brief Enum containing the different types of projection
+ *
+ * @param ISO Isometric projection (default)
+ * @param PERSP Perspective projection
+ */
 enum e_proj
 {
-	ISO,
+	ISO = 0,
 	PERSP
+};
+
+/**
+ * @brief Enum containing the different types of render
+ *
+ * @param LINE Lines are fully drawn (default)
+ * @param Point Only start and end points are drawn
+ */
+enum e_render
+{
+	LINE = 0,
+	POINT
 };
 
 /**
@@ -120,6 +139,7 @@ typedef struct s_rot_info
  * @param key_is_pressed Boolean to know if a key is pressed
  * @param key_pressed The key that is pressed
  * @param proj_type The projection type currently used
+ * @param render_type The render type currently used	
  * @param world_m The world matrix
  * @param rot The rotation info of the world
  * @param trans The translation info of the world
@@ -129,6 +149,7 @@ typedef struct s_world_i {
 	bool			key_is_pressed;
 	int				key_pressed;
 	enum e_proj		proj_type;
+	enum e_render	render_type;
 	t_matrix		*world_m;
 	t_rot_info		*rot;
 	t_trans_info	*trans;
