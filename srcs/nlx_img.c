@@ -6,18 +6,18 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 11:32:49 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/22 16:29:46 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/28 09:49:49 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * @file nlx_img.c
 
- * @brief functions to create and draw on images, using mlx
+ * @brief functions to create an images, using mlx
 
  * @author gd-harco
  * @date 2023/03/23
- * @version 1.0
+ * @version 1.2
  */
 
 #include "nlx_img.h"
@@ -38,22 +38,4 @@ void	nlx_new_image(t_img *img, void *mlx, int width, int height)
 			&img->line_length, &img->endian);
 	img->width = width;
 	img->height = height;
-}
-
-/**
- * @brief draw a pixel on an image
- *
- * @param img pointer to the t_img structure containing the image
- * @param x x coordinate of the pixel
- * @param y y coordinate of the pixel
- * @param color color of the pixel, in hexadecimal
- * or as defined in nlx_color.h
- * @return nothing
- */
-void	nlx_pixel_put(t_img	*img, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
 }

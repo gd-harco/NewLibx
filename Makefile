@@ -21,6 +21,7 @@ MLX_A			=	${MLX_PATH}libmlx.a
 # ---- Files ---- #
 
 HEADERS_LIST	=	nlx_color.h			\
+					nlx_draw.h			\
 					nlx_img.h			\
 					nlx_line.h			\
 					nlx_mat.h			\
@@ -28,9 +29,10 @@ HEADERS_LIST	=	nlx_color.h			\
 					nlx_win.h
 
 SRCS_LIST		=	nlx_clipping.c		\
+					nlx_draw_util.c		\
+					nlx_draw.c			\
 					nlx_img.c			\
 					nlx_line.c			\
-					nlx_line_util.c			\
 					nlx_mat.c			\
 					nlx_mat_multiply.c	\
 					nlx_mat_rot.c		\

@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 11:48:30 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/22 16:50:02 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/28 18:12:58 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * @ingroup image
  * @author gd-harco
  * @date 2023/03/23
- * @version 1.0
+ * @version 1.2
  */
 
 #ifndef NLX_IMG_H
@@ -57,7 +57,6 @@ typedef struct s_img
 
 //-----------------FUNCTIONS-----------------//
 
-void	nlx_pixel_put(t_img *img, int x, int y, int color);
 void	nlx_new_image(t_img *img, void *mlx, int width, int height);
 
 #endif
