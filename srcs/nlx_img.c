@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 11:32:49 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/28 09:49:49 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/29 12:02:47 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
  */
 
 #include "nlx_img.h"
+#include "nlx_color.h"
+#include "nlx_line.h"
+#include "nlx_draw.h"
 /**
  * @brief create a new image and store it in
  * 			the t_img structure passed as a parameter
@@ -38,4 +41,22 @@ void	nlx_new_image(t_img *img, void *mlx, int width, int height)
 			&img->line_length, &img->endian);
 	img->width = width;
 	img->height = height;
+}
+
+void	nlx_set_background(t_img *img, int color)
+{
+	int	row;
+	int	col;
+
+	row = 0;
+	while (row < img->height)
+	{
+		col = 0;
+		while (col < img->width)
+		{
+			nlx_pixel_put(img, (t_2d_point){col, row}, color);
+			col++;
+		}
+		row++;
+	}
 }

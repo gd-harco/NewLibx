@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 11:48:30 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/28 18:12:58 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/29 11:56:17 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ typedef struct s_img
 //-----------------FUNCTIONS-----------------//
 
 void	nlx_new_image(t_img *img, void *mlx, int width, int height);
+void	nlx_set_background(t_img *img, int color);
 
 #endif

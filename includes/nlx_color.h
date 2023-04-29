@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:14:59 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/22 16:56:06 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/29 12:03:20 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define NLX_COLOR_H
 
 # define COLOR_WHITE 0x00FFFFFF
+# define COLOR_BLACK 0x00000000
 # define COLOR_BLUE 0x000000FF
 # define COLOR_SEA_BLUE 0x00003D60
 # define COLOR_SAND 0x00C2B280
