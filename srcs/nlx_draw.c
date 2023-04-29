@@ -6,7 +6,7 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 13:55:39 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/04/28 18:13:23 by gd-harco         ###   ########lyon.fr   */
+/*   Updated: 2023/04/29 11:12:07 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	nlx_pixel_put(t_img	*img, t_2d_point to_put, int color)
 {
 	char	*dst;
 
-	dst = img->addr + (to_put.x * img->line_length
-			+ to_put.y * (img->bits_per_pixel / 8));
+	dst = img->addr + (to_put.y * img->line_length
+			+ to_put.x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 
