@@ -58,8 +58,7 @@ MKDIR = 		mkdir -p
 
 all:			${DIR_OBJS} ${OBJS} ${HEADERS}
 				make -C ${MLX_PATH}
-				cp ${MLX_PATH}libmlx.a ${NAME}
-				ar rcs ${NAME} ${OBJS}
+				make ${NAME}
 
 # ---- Variables Rules ---- #
 
@@ -69,10 +68,10 @@ ${NAME}			:	${OBJS} ${HEADERS}
 
 # ---- Compiled Rules ---- #
 
-${OBJS}			:	| ${DIR_OBJS}
+${OBJS}		:	| ${DIR_OBJS}
 
-${DIR_OBJS}%.o: ${DIR_SRCS}%.c ${HEADERS} ${MLX_A}
-				cc ${CFLAGS} -I ${DIR_HEADERS} -c $< -o $@
+${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS} ${MLX_A}
+			cc ${CFLAGS} -I ${DIR_HEADERS} -c $< -o $@
 
 ${DIR_OBJS}		:	 Makefile
 					${MKDIR} ${DIR_OBJS}
@@ -80,13 +79,19 @@ ${DIR_OBJS}		:	 Makefile
 # ---- Usual Rules ---- #
 
 clean:
+				make -C ${MLX_PATH} clean
 				${RMF} ${OBJS}
 
 
-fclean:			clean
+fclean:
+				make -C ${MLX_PATH} clean
+				${RMF} ${OBJS}
 				${RMF} ${NAME}
 
-re:				fclean
-				${MAKE} all
+re:
+				make -C ${MLX_PATH} clean
+				${RMF} ${OBJS}
+				${RMF} ${NAME}
+				make
 
 .PHONY:			all debug clean fclean re
