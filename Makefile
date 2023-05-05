@@ -56,10 +56,10 @@ MKDIR = 		mkdir -p
 
 # ********* RULES ******** #
 
-all:			${DIR_OBJS} ${OBJS} ${HEADERS}
+all				:
 				make -C ${MLX_PATH}
-				cp ${MLX_PATH}libmlx.a ${NAME}
-				ar rcs ${NAME} ${OBJS}
+				make ${NAME}
+
 
 # ---- Variables Rules ---- #
 
