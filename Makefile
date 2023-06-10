@@ -44,9 +44,9 @@ HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 
 OBJS			=	${SRCS_LIST:%.c=${DIR_OBJS}%.o}
 
-# ---- Compilation ---- #
+# ---- Compilation ---- # -O1
 
-CFLAGS			=	-Wall -Werror -Wextra -g3
+CFLAGS			=	-Wall -Werror -Wextra -O3
 
 # ---- Commands ---- #
 
